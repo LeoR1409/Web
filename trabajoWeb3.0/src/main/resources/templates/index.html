@@ -68,16 +68,7 @@
 
 <!-- move top --><!-- header -->
 <header>
-	<div class="top-head container">
-		<div class="ml-auto text-right right-p">
-			<ul>
-				<li class="mr-3 editContent" style="outline: none; cursor: inherit;">
-					<span class="fa fa-clock-o" style="outline: none; cursor: inherit;"></span> Mon-Sat : 9:00 to 17:00</li>
-				<li class="editContent" style="outline: none; cursor: inherit;">
-					<span class="fa fa-envelope-open" style="outline: none; cursor: inherit;"></span> <a href="mailto:info@example.com">info@example.com</a> </li>
-			</ul>
-		</div>
-	</div>
+	
 	<div class="container">
 		<!-- nav -->
 		<nav class="py-3 d-lg-flex">
@@ -87,12 +78,12 @@
 			<label for="drop" class="toggle"><span class="fa fa-bars" style="outline: none; cursor: inherit;"></span></label>
 			<input type="checkbox" id="drop">
 			<ul class="menu ml-auto mt-1">
-				<li class="active"><a href="index.html" style="color: rgb(255, 255, 255); font-weight: 400; text-transform: uppercase;">INICIO</a></li>
+				<li class="active"><a th:href="index.html" style="color: rgb(255, 255, 255); font-weight: 400; text-transform: uppercase;">INICIO</a></li>
 				<li class=""><a href="#about" style="color: rgb(221, 221, 221); font-weight: 400; text-transform: uppercase;">CHARLAS</a></li>
 				<li class=""><a href="#services" style="outline: none; cursor: inherit; outline-offset: -2px; color: rgb(221, 221, 221); font-weight: 400; text-transform: uppercase;">FOROS</a></li>
 				<li class=""><a href="#stats" style="color: rgb(221, 221, 221); font-weight: 400; text-transform: uppercase;">TIPOS DE EJERCICIOS</a></li>
 				<li class=""><a href="#testi" style="color: rgb(221, 221, 221); font-weight: 400; text-transform: uppercase;">NIVELES DE EJERCICIOS</a></li>
-				<li class=""><a href="#team" style="color: rgb(221, 221, 221); font-weight: 400; text-transform: uppercase;">EDITORIALES</a></li>
+				<li class=""><a th:href="@{/editoriales/list}" style="color: rgb(221, 221, 221); font-weight: 400; text-transform: uppercase;">EDITORIALES</a></li>
 				
 			</ul>
 		</nav>

@@ -34,8 +34,8 @@ public class EditorialServiceImpl implements IEditorialService{
 	}
 
 	@Override
-	@Transactional(readOnly=true)
+	@Transactional
 	public List<Editorial> list() {
-		return edR.findAll(Sort.by(Sort.Direction.ASC, "name"));
+		return edR.findAll();
 	}
 }

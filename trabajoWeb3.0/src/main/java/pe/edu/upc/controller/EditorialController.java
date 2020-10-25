@@ -25,15 +25,12 @@ public class EditorialController {
 	@Autowired
 	private IEditorialService edService;
 	
-	@RequestMapping("/index")
-	public String irWelcome() {
-		return "welcome";
-	}
+	
 	
 	@GetMapping("/new")
 	public String newEditorial(Model model) {
 		model.addAttribute("editorial", new Editorial());
-		return "/editorial/editorial";
+		return "editorial/editorial";
 	}
 	
 	@PostMapping("/save")
@@ -55,21 +52,21 @@ public class EditorialController {
 			}
 		}
 		
-		model.addAttribute("listEditoriales", edService.list());
+		model.addAttribute("listEditorial", edService.list());
 		
-		return "/editorial/listEditoriales";
+		return "/editorial/listEditorial";
 	}
 	
 	@GetMapping("/list")
 	public String listEditoriales(Model model) {
 		try {
 			model.addAttribute("editorial", new Editorial());
-			model.addAttribute("listEditoriales", edService.list());
+			model.addAttribute("listEditorial", edService.list());
 		}
 		catch(Exception e) {
 			model.addAttribute("error", e.getMessage());
 		}
-		return "/editoriales/listEditoriales";
+		return "/editorial/listEditorial";
 	}
 	
 	@RequestMapping("/delete")
