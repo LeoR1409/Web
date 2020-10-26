@@ -13,18 +13,10 @@
 	<link rel="stylesheet" href="/bundles/css/style.css" type="text/css" media="all"><!-- Style-CSS -->
 	<link href="/bundles/css/font-awesome.min.css" rel="stylesheet"><!-- Font-Awesome-Icons-CSS -->
 	<!-- //Custom-Files -->
-	<link href="/vendor/fontawesome-free/css/all.min.css" rel="stylesheet"
-	type="text/css">
-	<link
-	href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-	rel="stylesheet">
 
-<!-- Custom styles for this template-->
-	<link href="/css/sb-admin-2.min.css" rel="stylesheet">
 	<!-- Web-Fonts -->
 	<link href="//fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i&amp;subset=latin-ext" rel="stylesheet">
 	<!-- //Web-Fonts -->
-	
 
 <body>
 	<div id="page" class="page"><!-- header -->
@@ -75,7 +67,16 @@
 
 <!-- move top --><!-- header -->
 <header>
-	
+	<div class="top-head container">
+		<div class="ml-auto text-right right-p">
+			<ul>
+				<li class="mr-3 editContent" style="outline: none; cursor: inherit;">
+					<span class="fa fa-clock-o" style="outline: none; cursor: inherit;"></span> Mon-Sat : 9:00 to 17:00</li>
+				<li class="editContent" style="outline: none; cursor: inherit;">
+					<span class="fa fa-envelope-open" style="outline: none; cursor: inherit;"></span> <a href="mailto:info@example.com">info@example.com</a> </li>
+			</ul>
+		</div>
+	</div>
 	<div class="container">
 		<!-- nav -->
 		<nav class="py-3 d-lg-flex">
@@ -85,26 +86,22 @@
 			<label for="drop" class="toggle"><span class="fa fa-bars" style="outline: none; cursor: inherit;"></span></label>
 			<input type="checkbox" id="drop">
 			<ul class="menu ml-auto mt-1">
-				<li class=""><a th:href="@{/}" style="color: rgb(221, 221, 221); font-weight: 400; text-transform: uppercase;">INICIO</a></li>
+			<li class=""><a th:href="@{/}" style="color: rgb(221, 221, 221); font-weight: 400; text-transform: uppercase;">INICIO</a></li>
 				<li class=""><a href="#about" style="color: rgb(221, 221, 221); font-weight: 400; text-transform: uppercase;">CHARLAS</a></li>
 				<li class=""><a href="#services" style="outline: none; cursor: inherit; outline-offset: -2px; color: rgb(221, 221, 221); font-weight: 400; text-transform: uppercase;">FOROS</a></li>
 				<li class=""><a href="#stats" style="color: rgb(221, 221, 221); font-weight: 400; text-transform: uppercase;">TIPOS DE EJERCICIOS</a></li>
 				<li class=""><a href="#testi" style="color: rgb(221, 221, 221); font-weight: 400; text-transform: uppercase;">NIVELES DE EJERCICIOS</a></li>
-				<li class="active"><a th:href="@{/editoriales/list}" style="color: rgb(255, 255, 255); font-weight: 400; text-transform: uppercase;">EDITORIALES</a></li>
-				<li class=""><a th:href="@{/books/list}" style="color: rgb(221, 221, 221); font-weight: 400; text-transform: uppercase;">LIBROS</a></li>
+				<li class="active"><a th:href="@{/editoriales/list}" style="color: rgb(221, 221, 221); font-weight: 400; text-transform: uppercase;">EDITORIALES</a></li>
+				<li class="active"><a th:href="@{/books/list}" style="color: rgb(255, 255, 255); font-weight: 400; text-transform: uppercase;">LIBROS</a></li>
+				
 				
 			</ul>
-			
 		</nav>
 		<!-- //nav -->
-		<div style="align-content: right" class="float-right">
-			<a th:href="@{/editoriales/new/}" class="btnnew btn btn-light">Nuevo</a>
-		</div>
 	</div>
-		
 </header>
 <!-- //header -->
-	
+
 <!-- banner -->
 <div class="banner bg bg1" id="home">
 	<div class="layer">
@@ -113,29 +110,52 @@
 				<div class="col"></div>
 				<div class="col">
 					
-					<div class="banner-form-w3">
+					<div class="banner-form-w3 ">
+						<div class="padding editContent" style="outline: none; outline-offset: -2px; cursor: inherit;">
 							<!-- banner form -->
-							<table class="table table-striped" border="" style="border-color: white;" >
-								<thead class="thead-light">
-									<tr>
-										<th style="color: black; font-weight: 400; text-transform: uppercase;">ID</th>
-										<th style="color: black; font-weight: 400; text-transform: uppercase;">Nombre </th>
-										
-									</tr>
-								</thead>
-								<thead class="tbody-light" >
-								<tr th:each="s: ${listEditorial}">
-                                <td th:text="${s.idEditorial}" style="color: black; font-weight: 400;"></td>
-                                <td th:text="${s.name_Editorial}" style="color: black; font-weight: 400;"></td>
-                             
-                               </tr>
+							<form th:action="@{/books/save}" method="post" th:object="${book}">
+								<h5 class="mb-3 editContent" style="outline: none; cursor: inherit;">Registro de Libro<br></h5>
+								<div class="form-style-w3ls">
 									
-								</thead>
-							</table>
+									<div class="editContent" style="outline: none; cursor: inherit;">
+										<input placeholder="Nombre de libro"  type="text" th:field="*{name_Book}" 
+										th:errorclass="'form-control alert-danger'"  required/>
+										
+										<small class="form-text text-danger" th:if="${#fields.hasErrors('name_Book')}"
+                                        th:errors="*{name_Book}"></small>
+                                                                          
+									</div>
+									
+									<div class="editContent" style="outline: none; cursor: inherit;">
+										<input placeholder="Número de páginas"  type="text" th:field="*{numberpages_Book}" 
+										th:errorclass="'form-control alert-danger'"  required/>
+										
+										<small class="form-text text-danger" th:if="${#fields.hasErrors('numberpages_Book')}"
+                                        th:errors="*{numberpages_Book}"></small>
+                                                                          
+									</div>
+									
+									<div class="editContent">
+										<select th:field="*{editorial.idEditorial}">
+										  <option th:each="e:${listEditorial}" th:value="${e.idEditorial}"
+                                        th:text="${e.name_Editorial}"
+                                        th:selected="(${e.idEditorial} == *{editorial.idEditorial})"></option>
+										</select>
+									</div>
+									
+									<!--<input placeholder="Password" name="password" type="password" required=""> -->
+									<br>
+									
+									<button class="btn" style="outline: none; outline-offset: -2px; cursor: inherit;">Registrar</button>
+									<br>
+									<br>
+									<a th:href="@{/books/list}" class="btn" style="text-align:center; outline: none; outline-offset: -2px; cursor: inherit;"  >Volver</a>			
+									</div>
+							</form>
 							<!-- //banner form -->
+						</div>
 					</div>
-					<div class="banner-form-w3 ml-lg-5"></div>
-					<div class="banner-form-w3 ml-lg-5"></div>
+					<div class="banner-form-w3 "></div>
 				</div>
 				<div class="col"></div>
 			</div>
@@ -194,6 +214,9 @@
 				
 			</ul>
 			<div class="col-lg-6 copy-right p-0">
+				<p class="">© 2019 Child Learn. All rights reserved | Design by
+					<a href="http://w3layouts.com"> W3layouts.</a>
+				</p>
 			</div>
 		</div>
 	</div>

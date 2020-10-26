@@ -90,18 +90,20 @@
 				<li class=""><a href="#services" style="outline: none; cursor: inherit; outline-offset: -2px; color: rgb(221, 221, 221); font-weight: 400; text-transform: uppercase;">FOROS</a></li>
 				<li class=""><a href="#stats" style="color: rgb(221, 221, 221); font-weight: 400; text-transform: uppercase;">TIPOS DE EJERCICIOS</a></li>
 				<li class=""><a href="#testi" style="color: rgb(221, 221, 221); font-weight: 400; text-transform: uppercase;">NIVELES DE EJERCICIOS</a></li>
-				<li class="active"><a th:href="@{/editoriales/list}" style="color: rgb(255, 255, 255); font-weight: 400; text-transform: uppercase;">EDITORIALES</a></li>
-				<li class=""><a th:href="@{/books/list}" style="color: rgb(221, 221, 221); font-weight: 400; text-transform: uppercase;">LIBROS</a></li>
+				<li class=""><a th:href="@{/editoriales/list}" style="color: rgb(221, 221, 221); font-weight: 400; text-transform: uppercase;">EDITORIALES</a></li>
+				<li class="active"><a th:href="@{/books/list}" style="color: rgb(255, 255, 255); font-weight: 400; text-transform: uppercase;">LIBROS</a></li>
+				
 				
 			</ul>
 			
 		</nav>
 		<!-- //nav -->
 		<div style="align-content: right" class="float-right">
-			<a th:href="@{/editoriales/new/}" class="btnnew btn btn-light">Nuevo</a>
+			<a th:href="@{/books/new/}" class="btnnew btn btn-light">Nuevo</a>
 		</div>
 	</div>
-		
+	
+	
 </header>
 <!-- //header -->
 	
@@ -120,13 +122,19 @@
 									<tr>
 										<th style="color: black; font-weight: 400; text-transform: uppercase;">ID</th>
 										<th style="color: black; font-weight: 400; text-transform: uppercase;">Nombre </th>
+										<th style="color: black; font-weight: 400; text-transform: uppercase;">Número de Páginas </th>
+										<th style="color: black; font-weight: 400; text-transform: uppercase;">Editorial </th>									
+										
+										
 										
 									</tr>
 								</thead>
 								<thead class="tbody-light" >
-								<tr th:each="s: ${listEditorial}">
-                                <td th:text="${s.idEditorial}" style="color: black; font-weight: 400;"></td>
-                                <td th:text="${s.name_Editorial}" style="color: black; font-weight: 400;"></td>
+								<tr th:each="s: ${listBook}">
+                                <td th:text="${s.idBook}" style="color: black; font-weight: 400;"></td>
+                                <td th:text="${s.name_Book}" style="color: black; font-weight: 400;"></td>
+                                <td th:text="${s.numberpages_Book}" style="color: black; font-weight: 400;"></td>
+                                <td th:text="${s.editorial.name_Editorial}" style="color: black; font-weight: 400;"></td>                                
                              
                                </tr>
 									
