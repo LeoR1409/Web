@@ -7,7 +7,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import pe.edu.upc.entity.Type_Exercise;
+import pe.edu.upc.entity.TypeExercise;
 import pe.edu.upc.repository.Type_ExerciseRepository;
 import pe.edu.upc.service.IType_ExerciseService;
 
@@ -19,8 +19,8 @@ public class Type_ExerciseServiceImpl implements IType_ExerciseService{
 	
 	@Override
 	@Transactional
-	public Integer insert(Type_Exercise ed) {
-		int rpta = leR.buscarNombreTipoEjercicio(ed.getType_Name());
+	public Integer insert(TypeExercise ed) {
+		int rpta = 0;
 		if(rpta == 0) {
 			leR.save(ed);
 		}
@@ -35,7 +35,7 @@ public class Type_ExerciseServiceImpl implements IType_ExerciseService{
 
 	@Override
 	@Transactional(readOnly=true)
-	public List<Type_Exercise> list() {
-		return leR.findAll(Sort.by(Sort.Direction.ASC, "name"));
+	public List<TypeExercise> list() {
+		return leR.findAll();
 	}
 }

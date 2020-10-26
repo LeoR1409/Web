@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.support.SessionStatus;
 
-import pe.edu.upc.entity.Type_Exercise;
+import pe.edu.upc.entity.TypeExercise;
 import pe.edu.upc.service.IType_ExerciseService;
 
 @Controller
@@ -25,30 +25,26 @@ public class Type_ExerciseController {
 
 	@Autowired
 	private IType_ExerciseService teService;
-	
-	@RequestMapping("/index")
-	public String irWelcome() {
-		return "welcome";
-	}
+
 	
 	@GetMapping("/new")
 	public String newCategory(Model model) {
-		model.addAttribute("Type_Exercise", new Type_Exercise());
-		return "/type_Exercise/type_Exercise";
+		model.addAttribute("typeExercise", new TypeExercise());
+		return "/type_exercise/type_exercise";
 	}
 	
 	@PostMapping("/save")
-	public String saveCategory(@Valid Type_Exercise type_Exercise, BindingResult result, Model model, SessionStatus status)
+	public String saveCategory(@Valid TypeExercise type_exercise, BindingResult result, Model model, SessionStatus status)
 	throws Exception {
 		
 		if (result.hasErrors()) {
-			return "/type_Exercise/type_Exercise";
+			return "/type_exercise/type_exercise";
 		}
 		else {
-			int rpta = teService.insert(type_Exercise);
+			int rpta = teService.insert(type_exercise);
 			if (rpta > 0) {
 				model.addAttribute("mensaje", "Ya existe el tipo de ejercicio");
-				return "/type_Exercise/type_Exercise";
+				return "/type_exercise/type_exercise";
 			}
 			else {
 				model.addAttribute("mensaje", "Se guardo correctamente el tipo de ejercicio");
@@ -58,19 +54,19 @@ public class Type_ExerciseController {
 		
 		model.addAttribute("listType_Exercise", teService.list());
 		
-		return "/type_Exercise/listType_Exercise";
+		return "redirect:/types_exercise/list";
 	}
 	
 	@GetMapping("/list")
 	public String listType_Exercise(Model model) {
 		try {
-			model.addAttribute("type_Exercise", new Type_Exercise());
+			model.addAttribute("typeExercise", new TypeExercise());
 			model.addAttribute("listType_Exercise", teService.list());
 		}
 		catch(Exception e) {
 			model.addAttribute("error", e.getMessage());
 		}
-		return "/type_Exercise/listType_Exercise";
+		return "/type_exercise/listType_exercise";
 	}
 	
 	@RequestMapping("/delete")
@@ -86,7 +82,7 @@ public class Type_ExerciseController {
 			model.put("mensaje", "No se pudo eliminar el tipo de ejercicio");
 		}
 		model.put("listType_Exercise", teService.list());
-		return "/type_Exercise/listType_Exercise";
+		return "/type_exercise/listType_exercise";
 	}
 	
 }

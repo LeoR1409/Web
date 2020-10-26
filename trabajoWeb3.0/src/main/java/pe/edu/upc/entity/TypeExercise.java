@@ -10,10 +10,10 @@ import javax.persistence.Table;
 import javax.validation.constraints.Pattern;
 
 @Entity
-@Table(name="type_exercise")
+@Table(name="typeexercise")
 
 
-public class Type_Exercise implements Serializable {
+public class TypeExercise implements Serializable {
 	
 private static final long serialVersionUID = 1L;
 	
@@ -21,19 +21,19 @@ private static final long serialVersionUID = 1L;
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idType_Exercises;
 	
-	@Column(name="Type_Name", nullable=false, length=30)
-	@Pattern(regexp="[a-zA-Z]", message="El nombre solo puede tener letras")
-	private String Type_Name;
+	@Column(name="typesName", nullable=false, length=30)
+	//@Pattern(regexp="[a-zA-Z]", message="El nombre solo puede tener letras")
+	private String typesName;
 
-	public Type_Exercise() {
+	public TypeExercise() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public Type_Exercise(int idType_Exercises, String type_Name) {
+	public TypeExercise(int idType_Exercises, String typesName) {
 		super();
 		this.idType_Exercises = idType_Exercises;
-		Type_Name = type_Name;
+		this.typesName = typesName;
 	}
 
 	public int getIdType_Exercises() {
@@ -44,13 +44,20 @@ private static final long serialVersionUID = 1L;
 		this.idType_Exercises = idType_Exercises;
 	}
 
-	public String getType_Name() {
-		return Type_Name;
+	public String getTypesName() {
+		return typesName;
 	}
 
-	public void setType_Name(String type_Name) {
-		Type_Name = type_Name;
+	public void setTypesName(String typesName) {
+		this.typesName = typesName;
 	}
+
+
+	
+
+
+	
+
 	
 	
 }

@@ -2,10 +2,10 @@ package pe.edu.upc.service;
 
 import java.util.List;
 
-import pe.edu.upc.entity.Type_Exercise;
+import pe.edu.upc.entity.TypeExercise;
 
 public interface IType_ExerciseService {
-	public Integer insert(Type_Exercise te);
+	public Integer insert(TypeExercise te);
     public void delete(int idTipoEjercicio);
-    List<Type_Exercise> list();
+    List<TypeExercise> list();
 }
