@@ -120,14 +120,14 @@
 									<tr>
 										<th style="color: black; font-weight: 400; text-transform: uppercase;">ID</th>
 										<th style="color: black; font-weight: 400; text-transform: uppercase;">Nombre del tipo de ejercicio</th>
-										
+										<th style="color: black; font-weight: 400; text-transform: uppercase;">Operacion </th>
 									</tr>
 								</thead>
 								<thead class="tbody-light" >
 								<tr th:each="s: ${listType_Exercise}">
                                 <td th:text="${s.idType_Exercises}" style="color: black; font-weight: 400;"></td>
                                 <td th:text="${s.typesName}" style="color: black; font-weight: 400;"></td>
-                             
+                                <td><a th:href="@{'/types_exercises/delete/'+${s.idType_Exercises}}"><i class="iconf fa fa-trash" style="color: red"></i></a></td>
                                </tr>
 									
 								</thead>

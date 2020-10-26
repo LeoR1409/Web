@@ -112,7 +112,6 @@
 			<div class="row">
 				<div class="col"></div>
 				<div class="col">
-					
 					<div class="banner-form-w3">
 							<!-- banner form -->
 							<table class="table table-striped" border="" style="border-color: white;" >
@@ -120,14 +119,14 @@
 									<tr>
 										<th style="color: black; font-weight: 400; text-transform: uppercase;">ID</th>
 										<th style="color: black; font-weight: 400; text-transform: uppercase;">Nombre </th>
-										
+										<th style="color: black; font-weight: 400; text-transform: uppercase;">Operacion </th>
 									</tr>
 								</thead>
 								<thead class="tbody-light" >
 								<tr th:each="s: ${listEditorial}">
                                 <td th:text="${s.idEditorial}" style="color: black; font-weight: 400;"></td>
                                 <td th:text="${s.name_Editorial}" style="color: black; font-weight: 400;"></td>
-                             
+                                <td><a th:href="@{'/editoriales/delete/'+${s.idEditorial}}"><i class="iconf fa fa-trash" style="color: red"></i></a></td>
                                </tr>
 									
 								</thead>

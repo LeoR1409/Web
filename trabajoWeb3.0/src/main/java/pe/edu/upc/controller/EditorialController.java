@@ -1,5 +1,7 @@
 package pe.edu.upc.controller;
 
+import java.text.ParseException;
+import java.util.List;
 import java.util.Map;
 
 import javax.validation.Valid;
@@ -10,6 +12,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -17,7 +21,6 @@ import org.springframework.web.bind.support.SessionStatus;
 
 import pe.edu.upc.entity.Editorial;
 import pe.edu.upc.service.IEditorialService;
-
 @Controller
 @RequestMapping("/editoriales")
 public class EditorialController {
@@ -69,8 +72,8 @@ public class EditorialController {
 		return "/editorial/listEditorial";
 	}
 	
-	@RequestMapping("/delete")
-	public String delete(Map<String, Object> model, @RequestParam(value="id") Integer id) {
+	@RequestMapping("/delete/{id}")
+	public String delete(Map<String, Object> model, @PathVariable(value="id") Integer id) {
 		try {
 			if (id!= null && id > 0) {
 				edService.delete(id);
@@ -82,11 +85,7 @@ public class EditorialController {
 			model.put("mensaje", "No se pudo eliminar la editorial");
 		}
 		model.put("listEditoriales", edService.list());
-		return "/editoriales/listEditoriales";
-	}
-	
-	
-	
-	
+		return "/editorial/listEditorial";
+	}	
 	
 }

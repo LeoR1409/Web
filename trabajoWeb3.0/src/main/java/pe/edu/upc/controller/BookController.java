@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -74,8 +75,8 @@ public class BookController {
 		return "/book/listBook";
 	}
 	
-	@RequestMapping("/delete")
-	public String delete(Map<String, Object> model, @RequestParam(value="id") Integer id) {
+	@RequestMapping("/delete/{id}")
+	public String delete(Map<String, Object> model, @PathVariable(value="id") Integer id) {
 		try {
 			if (id!= null && id > 0) {
 				edService.delete(id);

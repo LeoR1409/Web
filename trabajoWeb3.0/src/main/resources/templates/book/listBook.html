@@ -124,7 +124,7 @@
 										<th style="color: black; font-weight: 400; text-transform: uppercase;">Nombre </th>
 										<th style="color: black; font-weight: 400; text-transform: uppercase;">Número de Páginas </th>
 										<th style="color: black; font-weight: 400; text-transform: uppercase;">Editorial </th>									
-										
+									    <th style="color: black; font-weight: 400; text-transform: uppercase;">Operacion </th>
 										
 										
 									</tr>
@@ -135,7 +135,7 @@
                                 <td th:text="${s.name_Book}" style="color: black; font-weight: 400;"></td>
                                 <td th:text="${s.numberpages_Book}" style="color: black; font-weight: 400;"></td>
                                 <td th:text="${s.editorial.name_Editorial}" style="color: black; font-weight: 400;"></td>                                
-                             
+                                <td><a th:href="@{'/books/delete/'+${s.idBook}}"><i class="iconf fa fa-trash" style="color: red"></i></a></td>
                                </tr>
 									
 								</thead>
