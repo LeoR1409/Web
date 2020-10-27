@@ -10,72 +10,68 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.support.SessionStatus;
 
-import pe.edu.upc.entity.Level_Exercise;
+import pe.edu.upc.entity.LevelExercise;
 import pe.edu.upc.service.ILevel_ExerciseService;
 
 
 @Controller
-@RequestMapping("/level_Exercise")
+@RequestMapping("/levels_exercise")
 
 public class Level_ExerciseController {
 
 	@Autowired
 	private ILevel_ExerciseService leService;
 	
-	@RequestMapping("/index")
-	public String irWelcome() {
-		return "welcome";
-	}
-	
 	@GetMapping("/new")
-	public String newLevel_Exercise(Model model) {
-		model.addAttribute("level_Exercise", new Level_Exercise());
-		return "/level_Exercise/level_Exercise";
+	public String newCategory(Model model) {
+		model.addAttribute("levelExercise", new LevelExercise());
+		return "/level_exercise/level_exercise";
 	}
 	
 	@PostMapping("/save")
-	public String saveCategory(@Valid Level_Exercise level_Exercise, BindingResult result, Model model, SessionStatus status)
+	public String saveCategory(@Valid LevelExercise level_exercise, BindingResult result, Model model, SessionStatus status)
 	throws Exception {
 		
 		if (result.hasErrors()) {
-			return "/level_Exercise/level_Exercise";
+			return "/level_exercise/level_exercise";
 		}
 		else {
-			int rpta = leService.insert(level_Exercise);
+			int rpta = leService.insert(level_exercise);
 			if (rpta > 0) {
-				model.addAttribute("mensaje", "Ya existe el nivel del ejercicio");
-				return "/level_Exercise/level_Exercise";
+				model.addAttribute("mensaje", "Ya existe el nivel de ejercicio");
+				return "/level_exercise/level_exercise";
 			}
 			else {
-				model.addAttribute("mensaje", "Se guardo correctamente el nivel del ejercicio");
+				model.addAttribute("mensaje", "Se guardo correctamente el nivel de ejercicio");
 				status.setComplete();
 			}
 		}
 		
 		model.addAttribute("listLevel_Exercise", leService.list());
 		
-		return "/level_Exercise/listLevel_Exercise";
+		return "redirect:/levels_exercise/list";
 	}
 	
 	@GetMapping("/list")
 	public String listLevel_Exercise(Model model) {
 		try {
-			model.addAttribute("category", new Level_Exercise());
-			model.addAttribute("listCategories", leService.list());
+			model.addAttribute("levelExercise", new LevelExercise());
+			model.addAttribute("listLevel_Exercise", leService.list());
 		}
 		catch(Exception e) {
 			model.addAttribute("error", e.getMessage());
 		}
-		return "/level_Exercise/listLevel_Exercise";
+		return "/level_exercise/listLevel_exercise";
 	}
 	
-	@RequestMapping("/delete")
-	public String delete(Map<String, Object> model, @RequestParam(value="id") Integer id) {
+	@RequestMapping("/delete/{id}")
+	public String delete(Map<String, Object> model, @PathVariable(value="id") Integer id) {
 		try {
 			if (id!= null && id > 0) {
 				leService.delete(id);
@@ -84,10 +80,10 @@ public class Level_ExerciseController {
 		}
 		catch(Exception ex) {
 			System.out.println(ex.getMessage());
-			model.put("mensaje", "No se pudo eliminar el nivel del ejercicio");
+			model.put("mensaje", "No se pudo eliminar el nivel de ejercicio");
 		}
 		model.put("listLevel_Exercise", leService.list());
-		return "/level_Exercise/listLevel_Exercise";
+		return "/level_exercise/listLevel_exercise";
 	}
 	
 }

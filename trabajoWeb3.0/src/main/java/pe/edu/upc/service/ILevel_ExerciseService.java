@@ -2,10 +2,10 @@ package pe.edu.upc.service;
 
 import java.util.List;
 
-import pe.edu.upc.entity.Level_Exercise;
+import pe.edu.upc.entity.LevelExercise;
 
 public interface ILevel_ExerciseService {
-	public Integer insert(Level_Exercise le);
+	public Integer insert(LevelExercise le);
     public void delete(int idNivelEjercicio);
-    List<Level_Exercise> list();
+    List<LevelExercise> list();
 }
