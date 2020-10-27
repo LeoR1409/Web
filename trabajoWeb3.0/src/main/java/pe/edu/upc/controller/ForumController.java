@@ -19,74 +19,74 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.support.SessionStatus;
 
-import pe.edu.upc.entity.Editorial;
-import pe.edu.upc.service.IEditorialService;
+import pe.edu.upc.entity.Forum;
+import pe.edu.upc.service.IForumService;
 @Controller
-@RequestMapping("/editoriales")
+@RequestMapping("/forums")
 
-public class EditorialController {
-	
+
+public class ForumController {
+
 	@Autowired
-	private IEditorialService edService;
+	private IForumService foService;
 	
 	
 	
 	@GetMapping("/new")
-	public String newEditorial(Model model) {
-		model.addAttribute("editorial", new Editorial());
-		return "editorial/editorial";
+	public String newForum(Model model) {
+		model.addAttribute("forum", new Forum());
+		return "forum/forum";
 	}
 	
 	@PostMapping("/save")
-	public String saveCategory(@Valid Editorial editorial, BindingResult result, Model model, SessionStatus status)
+	public String saveCategory(@Valid Forum forum, BindingResult result, Model model, SessionStatus status)
 	throws Exception {
 		
 		if (result.hasErrors()) {
-			return "/editorial/editorial";
+			return "/forum/forum";
 		}
 		else {
-			int rpta = edService.insert(editorial);
+			int rpta = foService.insert(forum);
 			if (rpta > 0) {
-				model.addAttribute("mensaje", "Ya existe la editorial");
-				return "/editorial/editorial";
+				model.addAttribute("mensaje", "Ya existe el foro");
+				return "/forum/forum";
 			}
 			else {
-				model.addAttribute("mensaje", "Se guardo correctamente la editorial");
+				model.addAttribute("mensaje", "Se guardo correctamente el foro");
 				status.setComplete();
 			}
 		}
 		
-		model.addAttribute("listEditorial", edService.list());
+		model.addAttribute("listForum", foService.list());
 		
-		return "/editorial/listEditorial";
+		return "/forum/listForum";
 	}
 	
 	@GetMapping("/list")
-	public String listEditoriales(Model model) {
+	public String listForums(Model model) {
 		try {
-			model.addAttribute("editorial", new Editorial());
-			model.addAttribute("listEditorial", edService.list());
+			model.addAttribute("forum", new Forum());
+			model.addAttribute("listForum", foService.list());
 		}
 		catch(Exception e) {
 			model.addAttribute("error", e.getMessage());
 		}
-		return "/editorial/listEditorial";
+		return "/forum/listForum";
 	}
 	
 	@RequestMapping("/delete/{id}")
 	public String delete(Map<String, Object> model, @PathVariable(value="id") Integer id) {
 		try {
 			if (id!= null && id > 0) {
-				edService.delete(id);
-				model.put("mensaje", "Se elimino la editorial correctamente");
+				foService.delete(id);
+				model.put("mensaje", "Se elimino el foro correctamente");
 			}
 		}
 		catch(Exception ex) {
 			System.out.println(ex.getMessage());
-			model.put("mensaje", "No se pudo eliminar la editorial");
+			model.put("mensaje", "No se pudo eliminar el foro");
 		}
-		model.put("listEditoriales", edService.list());
-		return "/editorial/listEditorial";
+		model.put("listForums", foService.list());
+		return "/forum/listForum";
 	}	
-	
 }

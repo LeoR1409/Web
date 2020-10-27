@@ -87,10 +87,10 @@
 			<ul class="menu ml-auto mt-1">
 				<li class=""><a th:href="@{/}" style="color: rgb(221, 221, 221); font-weight: 400; text-transform: uppercase;">INICIO</a></li>
 				<li class=""><a href="#about" style="color: rgb(221, 221, 221); font-weight: 400; text-transform: uppercase;">CHARLAS</a></li>
-				<li class=""><a href="#services" style="outline: none; cursor: inherit; outline-offset: -2px; color: rgb(221, 221, 221); font-weight: 400; text-transform: uppercase;">FOROS</a></li>
-				<li class=""><a th:href="@{/types_exercise/list}" style="color: rgb(255, 255, 255); font-weight: 400; text-transform: uppercase;">TIPOS DE EJERCICIOS</a></li>
+				<li class=""><a th:href="@{/forums/list}" style="outline: none; cursor: inherit; outline-offset: -2px; color: rgb(221, 221, 221); font-weight: 400; text-transform: uppercase;">FOROS</a></li>
+				<li class=""><a th:href="@{/types_exercise/list}" style="color: rgb(221, 221, 221); font-weight: 400; text-transform: uppercase;">TIPOS DE EJERCICIOS</a></li>
 				<li class=""><a href="#testi" style="color: rgb(221, 221, 221); font-weight: 400; text-transform: uppercase;">NIVELES DE EJERCICIOS</a></li>
-				<li class="active"><a th:href="@{/editoriales/list}" style="color: rgb(221, 221, 221); font-weight: 400; text-transform: uppercase;">EDITORIALES</a></li>
+				<li class="active"><a th:href="@{/editoriales/list}" style="color: rgb(255, 255, 255); font-weight: 400; text-transform: uppercase;">EDITORIALES</a></li>
 				<li class=""><a th:href="@{/books/list}" style="color: rgb(221, 221, 221); font-weight: 400; text-transform: uppercase;">LIBROS</a></li>
 				
 			</ul>
@@ -98,7 +98,7 @@
 		</nav>
 		<!-- //nav -->
 		<div style="align-content: right" class="float-right">
-			<a th:href="@{/types_exercise/new/}" class="btnnew btn btn-light">Nuevo</a>
+			<a th:href="@{/forums/new/}" class="btnnew btn btn-light">Nuevo</a>
 		</div>
 	</div>
 		
@@ -112,22 +112,24 @@
 			<div class="row">
 				<div class="col"></div>
 				<div class="col">
-					
 					<div class="banner-form-w3">
 							<!-- banner form -->
 							<table class="table table-striped" border="" style="border-color: white;" >
 								<thead class="thead-light">
 									<tr>
 										<th style="color: black; font-weight: 400; text-transform: uppercase;">ID</th>
-										<th style="color: black; font-weight: 400; text-transform: uppercase;">Nombre del tipo de ejercicio</th>
-										<th style="color: black; font-weight: 400; text-transform: uppercase;">Operacion </th>
+										<th style="color: black; font-weight: 400; text-transform: uppercase;">Tema </th>
+										<th style="color: black; font-weight: 400; text-transform: uppercase;">Miembros </th>
+										<th style="color: black; font-weight: 400; text-transform: uppercase;">Estatus </th>
 									</tr>
 								</thead>
 								<thead class="tbody-light" >
-								<tr th:each="s: ${listType_Exercise}">
-                                <td th:text="${s.idType_Exercises}" style="color: black; font-weight: 400;"></td>
-                                <td th:text="${s.typesName}" style="color: black; font-weight: 400;"></td>
-                                <td><a th:href="@{'/types_exercise/delete/'+${s.idType_Exercises}}"><i class="iconf fa fa-trash" style="color: red"></i></a></td>
+								<tr th:each="s: ${listForum}">
+                                <td th:text="${s.idForums}" style="color: black; font-weight: 400;"></td>
+                                <td th:text="${s.topic}" style="color: black; font-weight: 400;"></td>
+                                <td th:text="${s.members}" style="color: black; font-weight: 400;"></td>
+                                <td th:text="${s.status}" style="color: black; font-weight: 400;"></td>
+                                <td><a th:href="@{'/forums/delete/'+${s.idForums}}"><i class="iconf fa fa-trash" style="color: red"></i></a></td>
                                </tr>
 									
 								</thead>
