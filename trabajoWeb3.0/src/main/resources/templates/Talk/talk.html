@@ -1,0 +1,234 @@
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/" >
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EZ English</title>
+<link rel="shortcut icon" href="/bundles/EZ_English.ico" />
+
+	<!-- Custom-Files -->
+	<link rel="stylesheet" href="/bundles/css/bootstrap.css"><!-- Bootstrap-CSS -->
+	<link href="/bundles/css/css_slider.css" type="text/css" rel="stylesheet" media="all"><!-- banner slider -->
+	<link rel="stylesheet" href="/bundles/css/style.css" type="text/css" media="all"><!-- Style-CSS -->
+	<link href="/bundles/css/font-awesome.min.css" rel="stylesheet"><!-- Font-Awesome-Icons-CSS -->
+	<!-- //Custom-Files -->
+
+	<!-- Web-Fonts -->
+	<link href="//fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i&amp;subset=latin-ext" rel="stylesheet">
+	<!-- //Web-Fonts -->
+
+<body>
+	<div id="page" class="page"><!-- header -->
+
+<!-- //header -->
+
+<!-- banner -->
+
+<!-- //banner -->
+
+<!-- what we Serve -->
+
+<!-- //what we Serve -->
+
+<!-- services -->
+
+<!-- //services -->
+
+<!-- stats section -->
+
+<!-- //stats section -->
+
+<!-- other services -->
+
+<!-- //other services -->
+
+<!-- testimonials -->
+
+<!-- //testimonials -->
+
+<!-- Team  -->
+
+<!-- //Team -->
+	
+<!-- subscribe -->
+
+<!-- //subscribe -->
+
+<!-- footer -->
+
+<!-- //footer -->
+
+<!-- copyright -->
+
+<!-- //copyright -->
+
+<!-- move top -->
+
+<!-- move top --><!-- header -->
+<header>
+	<div class="top-head container">
+		<div class="ml-auto text-right right-p">
+			<ul>
+				<li class="mr-3 editContent" style="outline: none; cursor: inherit;">
+					<span class="fa fa-clock-o" style="outline: none; cursor: inherit;"></span> Mon-Sat : 9:00 to 17:00</li>
+				<li class="editContent" style="outline: none; cursor: inherit;">
+					<span class="fa fa-envelope-open" style="outline: none; cursor: inherit;"></span> <a href="mailto:info@example.com">info@example.com</a> </li>
+			</ul>
+		</div>
+	</div>
+	<div class="container">
+		<!-- nav -->
+		<nav class="py-3 d-lg-flex">
+			<div id="logo">
+				<h1> </h1>
+			</div>
+			<label for="drop" class="toggle"><span class="fa fa-bars" style="outline: none; cursor: inherit;"></span></label>
+			<input type="checkbox" id="drop">
+			<ul class="menu ml-auto mt-1">
+			<li class=""><a th:href="@{/}" style="color: rgb(221, 221, 221); font-weight: 400; text-transform: uppercase;">INICIO</a></li>
+				<li class=""><a th:href="@{/talk/list}" style="color: rgb(221, 221, 221); font-weight: 400; text-transform: uppercase;">CHARLAS</a></li>
+				<li class=""><a href="#services" style="outline: none; cursor: inherit; outline-offset: -2px; color: rgb(221, 221, 221); font-weight: 400; text-transform: uppercase;">FOROS</a></li>
+				<li class=""><a th:href="@{/types_exercise/list}" style="color: rgb(221, 221, 221); font-weight: 400; text-transform: uppercase;">TIPOS DE EJERCICIOS</a></li>
+				<li class=""><a href="#testi" style="color: rgb(221, 221, 221); font-weight: 400; text-transform: uppercase;">NIVELES DE EJERCICIOS</a></li>
+				<li class="active"><a th:href="@{/editoriales/list}" style="color: rgb(255, 255, 255); font-weight: 400; text-transform: uppercase;">EDITORIALES</a></li>
+				
+			</ul>
+		</nav>
+		<!-- //nav -->
+	</div>
+</header>
+<!-- //header -->
+
+<!-- banner -->
+<div class="banner bg bg1" id="home">
+	<div class="layer">
+		<div class="container">
+			<div class="row">
+				<div class="col"></div>
+				<div class="col">
+					
+					<div class="banner-form-w3 ">
+						<div class="padding editContent" style="outline: none; outline-offset: -2px; cursor: inherit;">
+							<!-- banner form -->
+							<form th:action="@{/talks/save}" method="post" th:object="${talk}">
+								<h5 class="mb-3 editContent" style="outline: none; cursor: inherit;">Registro de Charlas<br></h5>
+								<div class="form-style-w3ls">
+									
+									<div class="editContent" style="outline: none; cursor: inherit;">
+										<input placeholder="Sala"  type="text" th:field="*{roomName}" 
+										th:errorclass="'form-control alert-danger'"  required/>
+										
+										<small class="form-text text-danger" th:if="${#fields.hasErrors('roomName')}"
+                                        th:errors="*{roomName}"></small>
+                                   
+									</div>
+									<div class="editContent" style="outline: none; cursor: inherit;">
+										<input placeholder="Capacidad"  type="text" th:field="*{capacity}" 
+										th:errorclass="'form-control alert-danger'"  required/>
+										
+										<small class="form-text text-danger" th:if="${#fields.hasErrors('capacity')}"
+                                        th:errors="*{capacity}"></small>
+                                   
+									</div>
+									<div class="editContent" style="outline: none; cursor: inherit;">
+										<input placeholder="Vacantes"  type="text" th:field="*{vacancies}" 
+										th:errorclass="'form-control alert-danger'"  required/>
+										
+										<small class="form-text text-danger" th:if="${#fields.hasErrors('vacancies')}"
+                                        th:errors="*{vacancies}"></small>
+                                   
+									</div>
+									
+									
+									<!--<input placeholder="Password" name="password" type="password" required=""> -->
+									<br>
+									<button class="btn" style="outline: none; outline-offset: -2px; cursor: inherit;">Registrar</button>
+									<br>
+									<br>
+	
+									<a th:href="@{/talks/list}" class="btn" style="text-align:center; outline: none; outline-offset: -2px; cursor: inherit;" >Volver</a>			
+																
+									</div>
+							</form>
+							<!-- //banner form -->
+						</div>
+					</div>
+					<div class="banner-form-w3 "></div>
+				</div>
+				<div class="col"></div>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- //banner -->
+
+<!-- what we Serve -->
+
+<!-- //what we Serve -->
+
+<!-- services -->
+
+<!-- //services -->
+
+<!-- stats section -->
+
+<!-- //stats section -->
+
+<!-- other services -->
+
+<!-- //other services -->
+
+<!-- testimonials -->
+
+<!-- //testimonials -->
+
+<!-- Team  -->
+
+<!-- //Team -->
+	
+<!-- subscribe -->
+<section class="subscribe" id="subscribe">
+	<div class="container-fluid">
+		<div class="row">
+			
+			
+		</div>
+	</div>
+</section>
+<!-- //subscribe -->
+
+<!-- footer -->
+
+<!-- //footer -->
+
+<!-- copyright -->
+<section class="copyright">
+	<div class="container py-4">
+		<div class="row bottom">
+			<ul class="col-lg-6 links p-0">
+				
+				
+				
+				
+			</ul>
+			<div class="col-lg-6 copy-right p-0">
+				<p class="">© 2019 Child Learn. All rights reserved | Design by
+					<a href="http://w3layouts.com"> W3layouts.</a>
+				</p>
+			</div>
+		</div>
+	</div>
+</section>
+<!-- //copyright -->
+
+<!-- move top -->
+<div class="move-top text-right">
+	<a href="#home" class="move-top"> 
+		<span class="fa fa-angle-up  mb-3" aria-hidden="true"></span>
+	</a>
+</div>
+<!-- move top --></div><!-- /#page -->
+
+
+</body></html>
