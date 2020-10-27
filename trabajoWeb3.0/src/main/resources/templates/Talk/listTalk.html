@@ -127,7 +127,9 @@
 								<tr th:each="s: ${listTalk}">
                                 <td th:text="${s.idTalk}" style="color: black; font-weight: 400;"></td>
                                 <td th:text="${s.roomName}" style="color: black; font-weight: 400;"></td>
-                                <td><a th:href="@{'/talk/delete/'+${s.idTalk}}"><i class="iconf fa fa-trash" style="color: red"></i></a></td>
+                                <td th:text="${s.capacity}" style="color: black; font-weight: 400;"></td>
+                                <td th:text="${s.vacancies}" style="color: black; font-weight: 400;"></td>
+                                <td><a th:href="@{'/talks/delete/'+${s.idTalk}}"><i class="iconf fa fa-trash" style="color: red"></i></a></td>
                                </tr>
 									
 								</thead>

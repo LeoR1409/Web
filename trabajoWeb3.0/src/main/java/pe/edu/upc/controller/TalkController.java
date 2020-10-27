@@ -84,8 +84,10 @@ public class TalkController {
 		catch(Exception ex) {
 			System.out.println(ex.getMessage());
 			model.put("mensaje", "No se pudo eliminar la charla ");
+			model.put("listTalks", tlService.list());
+			
 		}
-		model.put("listTalk", tlService.list());
+		
 		return "/talk/listTalk";
 	}
 }
