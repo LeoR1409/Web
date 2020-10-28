@@ -48,19 +48,15 @@
     </div>
     <aside></aside>
     <section class="Libros">
-        <header>
-               
-            <div style="align-content: right; margin-bottom: 250px;margin-right: 300px;justify-content: center;display: flex;
-            background-color: #408791;border-radius: 10px; color: white;font-family: 'Oswald', sans-serif; width: 100px;"
-             class="float-right">
-             
-                <a href="RegistroLibros.html" th:href="@{/editoriales/new/}" class="btnnew btn " style="color: white;">Nuevo</a>
-            </div>
-        </header>
+        
         <div class="limiter">
             <div class="container-table100">
                 <div class="wrap-table100">
                     <div class="table100">
+                        <div style="align-content: rigth; justify-content: center; display:inline-block; margin-bottom:10px; text-align:center;
+                        background-color: #408791;border-radius: 10px; color: white;font-family: 'Oswald', sans-serif; width:100px; ">
+                        <a th:href="@{/books/new/}" class="btnnew btn " style="color: white;">Nuevo</a>
+                        </div>
                         <table>
                             <thead>
                                 <tr class="table100-head" style="background-color: #408791;">
@@ -72,24 +68,14 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                    <tr>
-                                        <td class=""></td>
-                                        <td class=""></td>
-                                        <td class=""></td>
-                                        <td class=""></td>
-                                        <td class=""></td>
-                                        
-                                    </tr>
-                                    <tr>
-                                        <td class=""></td>
-                                        <td class=""></td>
-                                        <td class=""></td>
-                                        <td class=""></td>
-                                        <td class=""></td>
-                                        
-                                    </tr>
-                                                            
-                                                                                                                                                                                
+                                  <tr th:each="c: ${listBook}">
+                                            <td class="" style="text-align: center;" th:text="${c.idBook}"></td>
+                                            <td class="" style="text-align: center;" th:text="${c.name_Book}"></td>
+                                            <td class="" style="text-align: center;" th:text="${c.numberpages_Book}"></td>
+                                            <td class="" style="text-align: center;" th:text="${c.editorial.name_Editorial}"></td>
+                                            <td style="text-align: center;"> <a th:href="@{'/books/delete/'+${c.idBook}}"><i
+                                        class="iconf fa fa-trash" style="color: red"></i></a> </td>
+                                 </tr>                                                                                                                                                                             
                             </tbody>
                         </table>
                     </div>

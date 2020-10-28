@@ -104,11 +104,10 @@
                                                 </div>
                                                 
                                                 <div class="editContent" >
-                                                    <input placeholder="Editorial" style="border-radius: 40px;" type="text" th:field="*{numberpages_Book}" 
-                                                    th:errorclass="'form-control alert-danger'"  required/>
-                                                    
-                                                    <small class="form-text text-danger" th:if="${#fields.hasErrors('numberpages_Book')}"
-                                                    th:errors="*{numberpages_Book}"></small>
+                                                    <select class="form-control" th:field="*{editorial.idEditorial}">
+                                                     <option th:each="c: ${listEditorial}" th:value="${c.idEditorial}" th:text="${c.name_Editorial}"
+                                                         th:selected="(${c.idEditorial} == *{editorial.idEditorial})"></option>
+                                                     </select>
                                                 </div>
 
                                                

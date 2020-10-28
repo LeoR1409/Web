@@ -35,7 +35,7 @@ public class BookController {
 	public String newEditorial(Model model) {
 		model.addAttribute("book", new Book());
 		model.addAttribute("listEditorial", ediService.list());
-		return "book/book";
+		return "book/RegistroLibros";
 	}
 	
 	@PostMapping("/save")
@@ -72,7 +72,7 @@ public class BookController {
 		catch(Exception e) {
 			model.addAttribute("error", e.getMessage());
 		}
-		return "/book/listBook";
+		return "/book/Libros";
 	}
 	
 	@RequestMapping("/delete/{id}")
@@ -88,7 +88,7 @@ public class BookController {
 			model.put("mensaje", "No se pudo eliminar el libro");
 		}
 		model.put("listBook", edService.list());
-		return "/book/listBook";
+		return "/book/Libros";
 	}
 }
 		
