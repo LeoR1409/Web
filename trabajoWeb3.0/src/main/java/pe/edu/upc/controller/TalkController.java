@@ -34,7 +34,7 @@ public class TalkController {
 	@GetMapping("/new")
 	public String newtalk(Model model) {
 		model.addAttribute("talk", new Talk());
-		return "talk/talk";
+		return "talk/RegistroCharlas";
 	}
 	
 	@PostMapping("/save")
@@ -58,7 +58,7 @@ public class TalkController {
 		
 		model.addAttribute("listTalk", tlService.list());
 		
-		return "/talk/listTalk";
+		return "/talk/Charlas";
 	}
 	
 	@GetMapping("/list")
@@ -70,7 +70,7 @@ public class TalkController {
 		catch(Exception e) {
 			model.addAttribute("error", e.getMessage());
 		}
-		return "/talk/listTalk";
+		return "/talk/Charlas";
 	}
 	
 	@RequestMapping("/delete/{id}")
@@ -88,6 +88,6 @@ public class TalkController {
 			
 		}
 		
-		return "/talk/listTalk";
+		return "/talk/Charlas";
 	}
 }
