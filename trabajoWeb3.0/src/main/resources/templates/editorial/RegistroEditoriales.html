@@ -1,16 +1,16 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en" xmlns:th="http://www.thymeleaf.org/" >
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ez English</title>
-    <link rel="stylesheet" href="css/bootstrap.css">
-    <link rel="stylesheet" href="css/css_slider.css">
-    <link rel="stylesheet" href="css/font-awesome.min.css">
-    <link rel="stylesheet" href="css/main.css">
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/util.css">
-    <link rel="stylesheet" href="css/menu.css">
+    <link rel="stylesheet" href="/css/bootstrap.css">
+    <link rel="stylesheet" href="/css/css_slider.css">
+    <link rel="stylesheet" href="/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/util.css">
+    <link rel="stylesheet" href="/css/menu.css">
 
     <!-- Custom-Files -->
 	<link rel="stylesheet" href="/bundles/css/bootstrap.css"><!-- Bootstrap-CSS -->
@@ -46,21 +46,20 @@
                     <li><i class="far fa-bell"></i></li>
                 </ul>
                 <h2>Ez English</h2>
-                <img src="img/logo.png" alt=" ... ">
+                <img src="/img/logo.png" alt=" ... ">
             </div>
         </div>
         <div class="body">
             
             <ul>
-                
-                <li><a href="Index.html">Inicio</a></li>
-                <li><a href="Charlas.html">Charlas</a></li>
-                <li><a href="Foros.html">Foros</a></li>
-                <li><a href="Ejercicios.html">Ejercicios</a></li>
-                <li><a href="Niveles.html">Niveles</a></li>
-                <li><a href="Editoriales.html">Editoriales</a></li>
-                <li><a href="Libros.html">Libros</a></li>
-                <li><a href="Competencias.html">Competencias </a></li>
+                <li><a th:href="@{/}">Inicio</a></li>
+                <li><a th:href="@{/talks/list}">Charlas</a></li>
+                <li><a th:href="@{/forums/list}">Foros</a></li>
+                <li><a href="#">Ejercicios</a></li> 
+                <li><a th:href="@{/levels_exercise/list}">Niveles</a></li>
+                <li><a th:href="@{/editoriales/list}">Editoriales</a></li>
+                <li><a th:href="@{/books/list}">Libros</a></li>
+                <li><a th:href="@{/types_exercise/list}">Competencias </a></li>
             </ul>
         </div>
     </div>

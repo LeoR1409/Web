@@ -31,7 +31,7 @@
                     <li><i class="far fa-bell"></i></li>
                 </ul>
                 <h2>Ez English</h2>
-                <img src="img/logo.png" alt=" ... ">
+                <img src="/img/logo.png" alt=" ... ">
             </div>
         </div>
         <div class="body">
@@ -71,7 +71,7 @@
                             <tbody>
                                    <tr th:each="c: ${listType_Exercise}">
                                             <td class="" style="text-align: center;" th:text="${c.idType_Exercises}"></td>
-                                            <td class="" style="text-align: center;"><a th:text="Ingresar"th:href="${c.typesName}"></a></td>
+                                             <td class="" style="text-align: center;" th:text="${c.typesName}"></td>
                                             <td style="text-align: center;"> <a th:href="@{'/types_exercise/delete/'+${c.idType_Exercises}}"><i
                                         class="iconf fa fa-trash" style="color: red"></i></a> </td>
                                         </tr>                                                                                                                                                                       

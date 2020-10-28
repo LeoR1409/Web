@@ -35,7 +35,7 @@ public class ForumController {
 	@GetMapping("/new")
 	public String newForum(Model model) {
 		model.addAttribute("forum", new Forum());
-		return "forum/forum";
+		return "/forum/RegistroForo";
 	}
 	
 	@PostMapping("/save")
@@ -59,7 +59,7 @@ public class ForumController {
 		
 		model.addAttribute("listForum", foService.list());
 		
-		return "/forum/listForum";
+		return "redirect:/forums/list";
 	}
 	
 	@GetMapping("/list")
@@ -71,7 +71,7 @@ public class ForumController {
 		catch(Exception e) {
 			model.addAttribute("error", e.getMessage());
 		}
-		return "/forum/listForum";
+		return "/forum/Foros";
 	}
 	
 	@RequestMapping("/delete/{id}")
@@ -87,6 +87,6 @@ public class ForumController {
 			model.put("mensaje", "No se pudo eliminar el foro");
 		}
 		model.put("listForums", foService.list());
-		return "/forum/listForum";
+		return "/forum/Foros";
 	}	
 }
