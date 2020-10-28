@@ -26,6 +26,9 @@ public class Talk implements Serializable {
 	
 	private int Capacity;
 	
+	@Column(name="enlace", nullable=false, length=100)
+	private String enlace;
+	
 	private int Vacancies;
 
 	public Talk() {
@@ -33,11 +36,12 @@ public class Talk implements Serializable {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Talk(int idTalk, String roomName, int capacity, int vacancies) {
+	public Talk(int idTalk, String roomName, int capacity, String enlace, int vacancies) {
 		super();
 		this.idTalk = idTalk;
 		RoomName = roomName;
 		Capacity = capacity;
+		this.enlace = enlace;
 		Vacancies = vacancies;
 	}
 
@@ -65,6 +69,14 @@ public class Talk implements Serializable {
 		Capacity = capacity;
 	}
 
+	public String getEnlace() {
+		return enlace;
+	}
+
+	public void setEnlace(String enlace) {
+		this.enlace = enlace;
+	}
+
 	public int getVacancies() {
 		return Vacancies;
 	}
@@ -72,6 +84,8 @@ public class Talk implements Serializable {
 	public void setVacancies(int vacancies) {
 		Vacancies = vacancies;
 	}
+
+
 	
 	
 }
