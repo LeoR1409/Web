@@ -88,5 +88,18 @@ public class ForumController {
 		}
 		model.put("listForums", foService.list());
 		return "/forum/Foros";
-	}	
+	}
+	
+	@RequestMapping("/ingresar/{column}")
+	public String ingresar(Map<String, Object> model, @PathVariable(value="column") String column) {
+		try {
+			String cadena="/forum/"+column;
+			return cadena;
+		}
+		catch(Exception ex) {
+			System.out.println(ex.getMessage());
+		}
+		model.put("listForums", foService.list());
+		return "/forum/Foros";
+	}
 }
