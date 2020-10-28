@@ -81,28 +81,19 @@
                                     <div class="padding editContent" style="outline: none; outline-offset: -2px; cursor: inherit; border-radius: 40px;">
 
                                         <!-- banner form -->
-                                        <form th:action="@{/books/save}" method="post" th:object="${book}">
+                                        <form th:action="@{/editoriales/save}" method="post" th:object="${editorial}">
                                             <h5 class="mb-3 editContent" style="outline: none; cursor: inherit; color: black; text-align: center; padding-bottom: 20px; font-size: 30px;">Registro de Editoriales<br></h5>
                                             <div class="form-style-w3ls">
                                                 
                                                 <div class="editContent" style="outline: none; cursor: inherit;">
-                                                    <input placeholder="Nombre de Editorial" style="border-radius: 40px;" type="text" th:field="*{name_Book}" 
+                                                    <input placeholder="Nombre de Editorial" style="border-radius: 40px;" type="text" th:field="*{name_Editorial}" 
                                                     th:errorclass="'form-control alert-danger'"  required/>
                                                     
-                                                    <small class="form-text text-danger" th:if="${#fields.hasErrors('name_Book')}"
-                                                    th:errors="*{name_Book}"></small>
+                                                    <small class="form-text text-danger" th:if="${#fields.hasErrors('name_Editorial')}"
+                                                    th:errors="*{name_Editorial}"></small>
                                                                                       
                                                 </div>
-                                                
-                                                <div class="editContent" style="outline: none; cursor: inherit;">
-                                                    <input placeholder="Operacion" style="border-radius: 40px;" type="text" th:field="*{numberpages_Book}" 
-                                                    th:errorclass="'form-control alert-danger'"  required/>
-                                                    
-                                                    <small class="form-text text-danger" th:if="${#fields.hasErrors('numberpages_Book')}"
-                                                    th:errors="*{numberpages_Book}"></small>
-                                                                                      
-                                                </div>
-                                    
+                                               
                                                 
                                                 <!--<input placeholder="Password" name="password" type="password" required=""> -->
                                                 <br>
@@ -110,7 +101,7 @@
                                                 <button class="btn" style="outline: none; outline-offset: -2px; cursor: inherit;border-radius: 40px;">Registrar</button>
                                                 <br>
                                                 <br>
-                                                <a th:href="@{/books/list}" class="btn" style="text-align:center; outline: none; outline-offset: -2px; cursor: inherit;border-radius: 40px;"  >Volver</a>			
+                                                <a th:href="@{/editoriales/list}" class="btn" style="text-align:center; outline: none; outline-offset: -2px; cursor: inherit;border-radius: 40px;"  >Volver</a>			
                                                 </div>
                                         </form>
                                         <!-- //banner form -->

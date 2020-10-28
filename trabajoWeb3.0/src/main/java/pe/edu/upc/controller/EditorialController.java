@@ -34,7 +34,7 @@ public class EditorialController {
 	@GetMapping("/new")
 	public String newEditorial(Model model) {
 		model.addAttribute("editorial", new Editorial());
-		return "editorial/editorial";
+		return "/editorial/RegistroEditoriales";
 	}
 	
 	@PostMapping("/save")
@@ -58,7 +58,7 @@ public class EditorialController {
 		
 		model.addAttribute("listEditorial", edService.list());
 		
-		return "/editorial/listEditorial";
+		return "/editorial/Editoriales";
 	}
 	
 	@GetMapping("/list")
@@ -70,7 +70,7 @@ public class EditorialController {
 		catch(Exception e) {
 			model.addAttribute("error", e.getMessage());
 		}
-		return "/editorial/listEditorial";
+		return "/editorial/Editoriales";
 	}
 	
 	@RequestMapping("/delete/{id}")
@@ -86,7 +86,7 @@ public class EditorialController {
 			model.put("mensaje", "No se pudo eliminar la editorial");
 		}
 		model.put("listEditoriales", edService.list());
-		return "/editorial/listEditorial";
+		return "/editorial/Editoriales";
 	}	
 	
 }
