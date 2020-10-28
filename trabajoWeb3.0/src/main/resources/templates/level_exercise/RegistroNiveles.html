@@ -1,16 +1,16 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en" xmlns:th="http://www.thymeleaf.org/" >
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ez English</title>
-    <link rel="stylesheet" href="css/bootstrap.css">
-    <link rel="stylesheet" href="css/css_slider.css">
-    <link rel="stylesheet" href="css/font-awesome.min.css">
-    <link rel="stylesheet" href="css/main.css">
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/util.css">
-    <link rel="stylesheet" href="css/menu.css">
+    <link rel="stylesheet" href="/css/bootstrap.css">
+    <link rel="stylesheet" href="/css/css_slider.css">
+    <link rel="stylesheet" href="/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/util.css">
+    <link rel="stylesheet" href="/css/menu.css">
 
     <!-- Custom-Files -->
 	<link rel="stylesheet" href="/bundles/css/bootstrap.css"><!-- Bootstrap-CSS -->
@@ -52,15 +52,14 @@
         <div class="body">
             
             <ul>
-                
-                <li><a href="Index.html">Inicio</a></li>
-                <li><a href="Charlas.html">Charlas</a></li>
-                <li><a href="Foros.html">Foros</a></li>
-                <li><a href="Ejercicios.html">Ejercicios</a></li>
-                <li><a href="Niveles.html">Niveles</a></li>
-                <li><a href="Editoriales.html">Editoriales</a></li>
-                <li><a href="Libros.html">Libros</a></li>
-                <li><a href="Competencias.html">Competencias </a></li>
+                <li><a th:href="@{/}">Inicio</a></li>
+                <li><a th:href="@{/talks/list}">Charlas</a></li>
+                <li><a th:href="@{/forums/list}">Foros</a></li>
+                <li><a href="#">Ejercicios</a></li> 
+                <li><a th:href="@{/levels_exercise/list}">Niveles</a></li>
+                <li><a th:href="@{/editoriales/list}">Editoriales</a></li>
+                <li><a th:href="@{/books/list}">Libros</a></li>
+                <li><a th:href="@{/types_exercise/list}">Competencias </a></li>
             </ul>
         </div>
     </div>
@@ -82,25 +81,16 @@
                                     <div class="padding editContent" style="outline: none; outline-offset: -2px; cursor: inherit; border-radius: 40px;">
 
                                         <!-- banner form -->
-                                        <form th:action="@{/books/save}" method="post" th:object="${book}">
+                                        <form th:action="@{/levels_exercise/save}" method="post" th:object="${levelExercise}">
                                             <h5 class="mb-3 editContent" style="outline: none; cursor: inherit; color: black; text-align: center; padding-bottom: 20px; font-size: 30px;">Registro de Niveles<br></h5>
                                             <div class="form-style-w3ls">
                                                 
                                                 <div class="editContent" style="outline: none; cursor: inherit;">
-                                                    <input placeholder="Nivel" style="border-radius: 40px;" type="text" th:field="*{name_Book}" 
+                                                    <input placeholder="Nivel" style="border-radius: 40px;" type="text" th:field="*{levelsName}" 
                                                     th:errorclass="'form-control alert-danger'"  required/>
                                                     
-                                                    <small class="form-text text-danger" th:if="${#fields.hasErrors('name_Book')}"
-                                                    th:errors="*{name_Book}"></small>
-                                                                                      
-                                                </div>
-                                                
-                                                <div class="editContent" style="outline: none; cursor: inherit;">
-                                                    <input placeholder="Operacion" style="border-radius: 40px;" type="text" th:field="*{numberpages_Book}" 
-                                                    th:errorclass="'form-control alert-danger'"  required/>
-                                                    
-                                                    <small class="form-text text-danger" th:if="${#fields.hasErrors('numberpages_Book')}"
-                                                    th:errors="*{numberpages_Book}"></small>
+                                                    <small class="form-text text-danger" th:if="${#fields.hasErrors('levelsName')}"
+                                                    th:errors="*{levelsName}"></small>
                                                                                       
                                                 </div>
                                                 
@@ -110,7 +100,7 @@
                                                 <button class="btn" style="outline: none; outline-offset: -2px; cursor: inherit;border-radius: 40px;">Registrar</button>
                                                 <br>
                                                 <br>
-                                                <a th:href="@{/books/list}" class="btn" style="text-align:center; outline: none; outline-offset: -2px; cursor: inherit;border-radius: 40px;"  >Volver</a>			
+                                                <a th:href="@{/levels_exercise/list}" class="btn" style="text-align:center; outline: none; outline-offset: -2px; cursor: inherit;border-radius: 40px;"  >Volver</a>			
                                                 </div>
                                         </form>
                                         <!-- //banner form -->

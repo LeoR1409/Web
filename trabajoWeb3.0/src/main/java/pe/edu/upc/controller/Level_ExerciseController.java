@@ -31,7 +31,7 @@ public class Level_ExerciseController {
 	@GetMapping("/new")
 	public String newCategory(Model model) {
 		model.addAttribute("levelExercise", new LevelExercise());
-		return "/level_exercise/level_exercise";
+		return "/level_exercise/RegistroNiveles";
 	}
 	
 	@PostMapping("/save")
@@ -67,7 +67,7 @@ public class Level_ExerciseController {
 		catch(Exception e) {
 			model.addAttribute("error", e.getMessage());
 		}
-		return "/level_exercise/listLevel_exercise";
+		return "/level_exercise/Niveles";
 	}
 	
 	@RequestMapping("/delete/{id}")
@@ -83,7 +83,7 @@ public class Level_ExerciseController {
 			model.put("mensaje", "No se pudo eliminar el nivel de ejercicio");
 		}
 		model.put("listLevel_Exercise", leService.list());
-		return "/level_exercise/listLevel_exercise";
+		return "/level_exercise/Niveles";
 	}
 	
 }

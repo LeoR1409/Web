@@ -21,7 +21,7 @@ private static final long serialVersionUID = 1L;
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idType_Exercises;
 	
-	@Column(name="typesName", nullable=false, length=30)
+	@Column(name="typesName", nullable=false, length=100)
 	//@Pattern(regexp="[a-zA-Z]", message="El nombre solo puede tener letras")
 	private String typesName;
 

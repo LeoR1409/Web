@@ -31,7 +31,7 @@ public class Type_ExerciseController {
 	@GetMapping("/new")
 	public String newCategory(Model model) {
 		model.addAttribute("typeExercise", new TypeExercise());
-		return "/type_exercise/type_exercise";
+		return "/type_exercise/RegistroCompetencias";
 	}
 	
 	@PostMapping("/save")
@@ -67,7 +67,7 @@ public class Type_ExerciseController {
 		catch(Exception e) {
 			model.addAttribute("error", e.getMessage());
 		}
-		return "/type_exercise/listType_exercise";
+		return "/type_exercise/Competencias";
 	}
 	
 	@RequestMapping("/delete/{id}")
@@ -83,7 +83,7 @@ public class Type_ExerciseController {
 			model.put("mensaje", "No se pudo eliminar el tipo de ejercicio");
 		}
 		model.put("listType_Exercise", teService.list());
-		return "/type_exercise/listType_exercise";
+		return "/type_exercise/Competencias";
 	}
 	
 }
