@@ -90,8 +90,7 @@
                                                     <input placeholder="Nombre del Libro" style="border-radius: 40px;" type="text" th:field="*{name_Book}" 
                                                     th:errorclass="'form-control alert-danger'"  required/>
                                                     
-                                                    <small class="form-text text-danger" th:if="${#fields.hasErrors('name_Book')}"
-                                                    th:errors="*{name_Book}"></small>
+                                                   
                                                                                       
                                                 </div>
                                                 
@@ -99,8 +98,7 @@
                                                     <input placeholder="Nº Paginas" style="border-radius: 40px;" type="text" th:field="*{numberpages_Book}" 
                                                     th:errorclass="'form-control alert-danger'"  required/>
                                                     
-                                                    <small class="form-text text-danger" th:if="${#fields.hasErrors('numberpages_Book')}"
-                                                    th:errors="*{numberpages_Book}"></small>
+                                                    
                                                                                       
                                                 </div>
                                                 

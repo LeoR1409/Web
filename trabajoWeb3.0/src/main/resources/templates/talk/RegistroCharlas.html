@@ -90,8 +90,7 @@
                                                     <input placeholder="Nombre de la Sala" style="border-radius: 40px;" type="text" th:field="*{roomName}" 
                                                     th:errorclass="'form-control alert-danger'"  required/>
                                                     
-                                                    <small class="form-text text-danger" th:if="${#fields.hasErrors('roomName')}"
-                                                    th:errors="*{roomName}"></small>
+                                                   
                                                                                       
                                                 </div>
                                                 
@@ -99,8 +98,7 @@
                                                     <input placeholder="Capacidad" style="border-radius: 40px;" type="text" th:field="*{capacity}" 
                                                     th:errorclass="'form-control alert-danger'"  required/>
                                                     
-                                                    <small class="form-text text-danger" th:if="${#fields.hasErrors('capacity')}"
-                                                    th:errors="*{capacity}"></small>
+                                                   
                                                                                       
                                                 </div>
                                                 
@@ -108,8 +106,7 @@
                                                     <input placeholder="Vacantes" style="border-radius: 40px;" type="text" th:field="*{vacancies}" 
                                                     th:errorclass="'form-control alert-danger'"  required/>
                                                     
-                                                    <small class="form-text text-danger" th:if="${#fields.hasErrors('vacancies')}"
-                                                    th:errors="*{vacancies}"></small>
+                                                    
                                                 </div>
                                                 
                                                 <div class="editContent" >
