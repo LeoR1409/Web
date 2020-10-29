@@ -1,6 +1,7 @@
 package pe.edu.upc.service.impl;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
@@ -26,6 +27,26 @@ public class TalkServiceImpl implements ITalkService{
 			tlr.save(tl);
 		}
 		return rpta;
+	}
+	
+	@Override
+	@Transactional	
+	public boolean modificar(Talk talk) {
+		boolean flag = false;
+		try {
+			tlr.save(talk);
+			flag = true;
+		}
+		catch (Exception ex){
+			System.out.println("Sucedio un roche");
+		}
+		return flag;
+	}
+	
+	@Override
+	@Transactional(readOnly = true)
+	public Optional<Talk> listarId(int idTalk){
+		return tlr.findById(idTalk);
 	}
 
 	@Override

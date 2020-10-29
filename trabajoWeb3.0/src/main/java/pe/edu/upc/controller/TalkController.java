@@ -2,6 +2,7 @@ package pe.edu.upc.controller;
 import java.text.ParseException;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 import javax.validation.Valid;
 
@@ -17,7 +18,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.support.SessionStatus;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import pe.edu.upc.entity.Editorial;
 import pe.edu.upc.entity.Talk;
 import pe.edu.upc.service.ITalkService;
 
@@ -49,7 +52,7 @@ public class TalkController {
 			int rpta = tlService.insert(talk);
 			if (rpta > 0) {
 				model.addAttribute("mensaje", "Ya existe la charla");
-				return "/editorial/editorial";
+				return "/talk/talk";
 			}
 			else {
 				model.addAttribute("mensaje", "Se guardo correctamente la charla");
@@ -59,7 +62,7 @@ public class TalkController {
 		
 		model.addAttribute("listTalk", tlService.list());
 		
-		return "redirect:/talks/list";
+		return "/talk/Charlas";
 	}
 	
 	@GetMapping("/list")
@@ -93,6 +96,21 @@ public class TalkController {
 		return "redirect:/talks/list";
 	}
 	
+	@RequestMapping("/modificar/{id}")
+	public String modificar(@PathVariable int id, Model model, RedirectAttributes objRedir) 
+			throws ParseException
+			{
+				Optional<Talk> objTalk = tlService.listarId(id);
+				
+				if (objTalk == null) {
+					objRedir.addFlashAttribute("mensaje", "Ocurrio un rochesin");
+					return "redirect:/talks/list";
+				}
+				else {
+					model.addAttribute("talk", objTalk);
+					return "/talk/RegistroCharlas";
+				}
+			}
 	
 	@RequestMapping("/buscar")
 	public String buscar(Map<String, Object> model, @ModelAttribute Talk talk ) throws ParseException {

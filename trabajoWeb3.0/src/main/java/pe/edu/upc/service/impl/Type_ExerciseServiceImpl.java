@@ -26,6 +26,7 @@ public class Type_ExerciseServiceImpl implements IType_ExerciseService{
 		}
 		return rpta;
 	}
+	
 
 	@Override
 	@Transactional

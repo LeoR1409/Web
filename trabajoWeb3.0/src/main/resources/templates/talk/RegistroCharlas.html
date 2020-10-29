@@ -85,7 +85,14 @@
                                         <form th:action="@{/talks/save}" method="post" th:object="${talk}">
                                             <h5 class="mb-3 editContent" style="outline: none; cursor: inherit; color: black; text-align: center; padding-bottom: 20px; font-size: 30px;">Registro de Charla<br></h5>
                                             <div class="form-style-w3ls">
-                                                
+                                             <div class="editContent" style="outline: none; display: none; cursor: inherit;">
+                                                    <input placeholder="id" style="border-radius: 40px;" type="text" th:field="*{idTalk}" 
+                                                    th:errorclass="'form-control alert-danger'"  required/>
+                                                    
+                                                   
+                                                                                      
+                                                </div>
+                                                   
                                                 <div class="editContent" style="outline: none; cursor: inherit;">
                                                     <input placeholder="Nombre de la Sala" style="border-radius: 40px;" type="text" th:field="*{roomName}" 
                                                     th:errorclass="'form-control alert-danger'"  required/>

@@ -1,6 +1,8 @@
 package pe.edu.upc.controller;
 
+import java.text.ParseException;
 import java.util.Map;
+import java.util.Optional;
 
 import javax.validation.Valid;
 
@@ -15,6 +17,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.support.SessionStatus;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import pe.edu.upc.entity.Exercise;
 import pe.edu.upc.service.IExercise_Service;
@@ -91,6 +94,21 @@ public class ExerciseController {
 		}
 		model.put("listExercise", eService.list());
 		return "/exercise/Ejercicios";
+	}
+	
+	@RequestMapping("/modificar/{id}")
+	public String modificar(@PathVariable int id, Model model, RedirectAttributes objRedir)
+			throws ParseException{
+		Optional<Exercise> objExer = eService.listarId(id);
+		
+		if (objExer == null) {
+			objRedir.addFlashAttribute("mensaje", "Ocurrio un rochesin");
+			return "redirect:/exercises/list";
+		}
+		else {
+			model.addAttribute("exercise", objExer);
+			return "/exercise/RegistroEjercicios";
+		}
 	}
 	
 	@RequestMapping("/ingresar/{id}")

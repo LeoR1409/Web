@@ -71,6 +71,7 @@
                                     <th class="tabletext"style="text-align: center;font-family: 'Oswald', sans-serif;">Tipo</th>
                                     <th class="tabletext"style="text-align: center;font-family: 'Oswald', sans-serif;">Enlace</th>
                                     <th class="tabletext"style="text-align: center;font-family: 'Oswald', sans-serif;">Operación</th>
+                                    <th class="tabletext"style="text-align: center;font-family: 'Oswald', sans-serif;">Operación</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -81,6 +82,7 @@
                                             <td class="" style="text-align: center;" ><a target="_blank" th:href="@{'/exercises/ingresar/'+${c.levelexercise.levelsName}}">Ingresar</a>  </td>
                                             <td style="text-align: center;"> <a th:href="@{'/exercises/delete/'+${c.idExercise}}"><i
                                         class="iconf fa fa-trash" style="color: red"></i></a> </td>
+                                            <td style="text-align: center;"><a th:href="@{'/exercises/modificar/' + ${c.idExercise}}">Modificar</a></td>
                                  </tr>                                                                                                                                                                             
                             </tbody>
                         </table>

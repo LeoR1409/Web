@@ -85,9 +85,11 @@
                                         <form th:action="@{/exercises/save}" method="post" th:object="${exercise}">
                                             <h5 class="mb-3 editContent" style="outline: none; cursor: inherit; color: black; text-align: center; padding-bottom: 20px; font-size: 30px;">Registro de Ejercicio<br></h5>
                                             <div class="form-style-w3ls">
-                                                
+                                                <div class="editContent" style="outline: none; display: none; cursor: inherit;">
+                                                    <input placeholder="id" style="border-radius: 40px;" type="text" th:field="*{idExercise}" 
+                                                    th:errorclass="'form-control alert-danger'"  required/>
       
-                                                
+                                                </div>
                                                 <div class="editContent" >
                                                     <select class="form-control" th:field="*{levelexercise.idLevel_Exercises}">
                                                      <option th:each="c: ${listLevel}" th:value="${c.idLevel_Exercises}" th:text="${c.levelsName}"

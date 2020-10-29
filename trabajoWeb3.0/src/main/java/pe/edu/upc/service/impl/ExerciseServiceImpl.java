@@ -1,6 +1,7 @@
 package pe.edu.upc.service.impl;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
@@ -25,6 +26,26 @@ public class ExerciseServiceImpl implements IExercise_Service{
 			edR.save(e);
 		}
 		return rpta;
+	}
+	
+	@Override
+	@Transactional	
+	public boolean modificar(Exercise e) {
+		boolean flag = false;
+		try {
+			edR.save(e);
+			flag = true;
+		}
+		catch (Exception ex){
+			System.out.println("Sucedio un roche");
+		}
+		return flag;
+	}
+	
+	@Override
+	@Transactional(readOnly = true)
+	public Optional<Exercise> listarId(int idExercise){
+		return edR.findById(idExercise);
 	}
 
 	@Override

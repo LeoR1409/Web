@@ -10,7 +10,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 
 import pe.edu.upc.entity.LevelExercise;
-import pe.edu.upc.entity.TypeExercise;
 import pe.edu.upc.repository.Level_ExerciseRepository;
 import pe.edu.upc.service.ILevel_ExerciseService;
 
