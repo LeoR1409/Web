@@ -70,7 +70,7 @@
                                     <th class="tabletext" style="text-align: center; font-family: 'Oswald', sans-serif;">ID</th>
                                     <th class="tabletext"style="text-align: center;font-family: 'Oswald', sans-serif;">Nombre de la Editorial</th>
                                     <th class="tabletext"style="text-align: center;font-family: 'Oswald', sans-serif;">Operación</th>
-                             
+                             		<th class="tabletext"style="text-align: center;font-family: 'Oswald', sans-serif;">Operación</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -79,7 +79,9 @@
                                             <td class="" style="text-align: center;" th:text="${c.name_Editorial}"></td>
                                             
                                             <td style="text-align: center;"> <a th:href="@{'/editoriales/delete/'+${c.idEditorial}}"><i
-                                        class="iconf fa fa-trash" style="color: red"></i></a> </td>
+                                        	class="iconf fa fa-trash" style="color: red"></i></a> </td>
+                                        
+                                        	<td style="text-align: center;"><a th:href="@{'/editoriales/modificar/' + ${c.idEditorial}}">Modificar</a></td>
                                  </tr>                              
                                                                                                                                                                                 
                             </tbody>

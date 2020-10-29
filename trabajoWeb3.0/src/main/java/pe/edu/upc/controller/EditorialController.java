@@ -3,6 +3,7 @@ package pe.edu.upc.controller;
 import java.text.ParseException;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 import javax.validation.Valid;
 
@@ -18,9 +19,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.support.SessionStatus;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import pe.edu.upc.entity.Editorial;
 import pe.edu.upc.service.IEditorialService;
+
+
 @Controller
 @RequestMapping("/editoriales")
 
@@ -88,5 +92,31 @@ public class EditorialController {
 		model.put("listEditoriales", edService.list());
 		return "/editorial/Editoriales";
 	}	
+	
+	
+	@RequestMapping("/modificar/{id}")
+	public String modificar(@PathVariable int id, Model model, RedirectAttributes objRedir) 
+	throws ParseException
+	{
+		Optional<Editorial> objEditorial = edService.listarId(id);
+		
+		if (objEditorial == null) {
+			objRedir.addFlashAttribute("mensaje", "Ocurrio un rochesin");
+			return "redirect:/editoriales/list";
+		}
+		else {
+			model.addAttribute("editorial", objEditorial);
+			return "/editorial/RegistroEditoriales";
+		}
+	}
+	
+	@RequestMapping("/listarId")
+	public String listar(Map<String, Object> model, @ModelAttribute Editorial editorial) 
+	throws ParseException
+	{
+		edService.listarId(editorial.getIdEditorial());
+		return "Editoriales";
+	}
+	
 	
 }

@@ -1,6 +1,7 @@
 package pe.edu.upc.service.impl;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
@@ -10,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import pe.edu.upc.entity.Editorial;
 import pe.edu.upc.repository.EditorialRepository;
 import pe.edu.upc.service.IEditorialService;
+
 
 @Service
 public class EditorialServiceImpl implements IEditorialService{
@@ -26,7 +28,27 @@ public class EditorialServiceImpl implements IEditorialService{
 		}
 		return rpta;
 	}
-
+//---------------------------------------------
+	@Override
+	@Transactional	
+	public boolean modificar(Editorial editorial) {
+		boolean flag = false;
+		try {
+			edR.save(editorial);
+			flag = true;
+		}
+		catch(Exception ex) {
+			System.out.println("Sucedio un roche...");
+		}
+		return flag;
+	}
+	
+	@Override
+	@Transactional(readOnly = true)
+	public Optional<Editorial> listarId(int idEditorial) {
+		return edR.findById(idEditorial);		
+	}
+//-----------------------------------------------
 	@Override
 	@Transactional
 	public void delete(int idEditorial) {

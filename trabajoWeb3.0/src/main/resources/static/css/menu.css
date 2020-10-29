@@ -183,9 +183,11 @@ section:nth-child(odd){
 }
 .inicio,
 img{
-    border-radius: 200px;
-    width: 900px;
-    height:650px;
+    border-top-right-radius: 350px;
+    border-bottom-right-radius: 300px;
+    width: 1580px;
+    height:950px;
+
 }
 
 .hidden{
@@ -211,8 +213,8 @@ img{
 
 .search-box{
     position: absolute;
-    top: 56.16%;
-    left: 25%;
+    top: 54.18%;
+    left: 30%;
     transform: translate(-50%, -50%);
     background: #2f3640;
     height: 40px;
@@ -259,3 +261,7 @@ img{
     line-height: 20px;
     width: 0px;
 }
+
+
+
+
