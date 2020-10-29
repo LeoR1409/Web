@@ -63,28 +63,51 @@
     
             <div class="limiter">
                 <div class="container-table100">
+                
                     <div class="wrap-table100">
-              <div class="search-box">
-                            <input class="search-txt" type="text" name="" placeholder="Type to search" >
-                            <a class="search-btn" href="#"> 
-                                <i class="fas fa-search"></i>
-                            </a>
-                            </div>
-
+                    
                         <div style="align-content: left; display:inline-block; 
                          color: white;font-family: 'Oswald', sans-serif; margin-bottom: 25px;">
                             <h2 style="font-size: 100px;"><strong>Charlas</strong> </h2>
                         </div>
-                        <div class="table100">
+                        <div class="table100" >
                         
+                       
                         <div style="align-content: left; justify-content: center; display:inline-block; margin-bottom:10px; text-align:center;
-                        background-color: #408791;border-radius: 10px; color: white;font-family: 'Oswald', sans-serif; width:100px; ">
+                        background-color: #408791;border-radius: 10px; color: white;font-family: 'Oswald', sans-serif; width:100px;" >
                  
                          <a th:href="@{/talks/new/}" class="btnnew btn " style="color: white;">Nuevo</a>
-                    
+                         
+
                       </div>
+                      
+                      <div  style="display:inline-block; "class="form-group">      
+	                  
+	                  
+	                  
+	                  <form th:action="@{/talks/buscar}" method="post" style="display:inline-block;height:50px; transform:translateY(58%);"
+                        th:object="${talk}">
+                        <div class="form-group" style="display:inline-block;">
+                            <table>
+                                <tbody>
+                                    <tr>
+                                        <td><label for="name"
+                                            class="col-sm-2 col-form-label">Buscar:</label></td>
+                                        <td><input type="text" class="form-control"
+                                            autocomplete="off" th:field="*{roomName}" id="name"
+                                            placeholder="Nombre" required="required"
+                                            ></input></td>
+                                        <td><button type="submit" class="btn btn-danger">
+                                                <i class="iconf fa fa-search" style="color: white;"></i>
+                                            </button></td>
+                                  
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </form>
                         
-                        
+                        </div>
                             <table>
                                 <thead>
                                     <tr class="table100-head" style="background-color: #408791;">

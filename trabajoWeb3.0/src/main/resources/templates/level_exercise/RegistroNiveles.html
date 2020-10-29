@@ -86,6 +86,14 @@
                                             <h5 class="mb-3 editContent" style="outline: none; cursor: inherit; color: black; text-align: center; padding-bottom: 20px; font-size: 30px;">Registro de Niveles<br></h5>
                                             <div class="form-style-w3ls">
                                                 
+                                                <div class="editContent" style="outline: none; display:none; cursor: inherit;">
+                                                    <input placeholder="ID" style="border-radius: 40px;" type="text" th:field="*{idLevel_Exercises}" 
+                                                    th:errorclass="'form-control alert-danger'"  required/>
+                                                    
+                                                   
+                                                                                      
+                                                </div>
+                                                
                                                 <div class="editContent" style="outline: none; cursor: inherit;">
                                                     <input placeholder="Nivel" style="border-radius: 40px;" type="text" th:field="*{levelsName}" 
                                                     th:errorclass="'form-control alert-danger'"  required/>

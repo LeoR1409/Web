@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import pe.edu.upc.entity.Book;
+import pe.edu.upc.entity.Talk;
 import pe.edu.upc.repository.BookRepository;
 import pe.edu.upc.service.IBook_Service;
 
@@ -37,5 +38,11 @@ public class BookServiceImpl implements IBook_Service{
 	@Transactional
 	public List<Book> list() {
 		return edR.findAll();
+	}
+	
+	@Override
+	@Transactional
+	public List<Book> BuscarNombre(String name) {
+		return edR.buscarlibro(name);
 	}
 }

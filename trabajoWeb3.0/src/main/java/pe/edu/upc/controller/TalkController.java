@@ -21,6 +21,7 @@ import org.springframework.web.bind.support.SessionStatus;
 import pe.edu.upc.entity.Talk;
 import pe.edu.upc.service.ITalkService;
 
+
 @Controller
 @RequestMapping("/talks")
 
@@ -58,7 +59,7 @@ public class TalkController {
 		
 		model.addAttribute("listTalk", tlService.list());
 		
-		return "/talk/Charlas";
+		return "redirect:/talks/list";
 	}
 	
 	@GetMapping("/list")
@@ -76,6 +77,7 @@ public class TalkController {
 	@RequestMapping("/delete/{id}")
 	public String delete(Map<String, Object> model, @PathVariable(value="id") Integer id) {
 		try {
+			model.put("talk", new Talk());
 			if (id!= null && id > 0) {
 				tlService.delete(id);
 				model.put("mensaje", "Se elimino la charla correctamente");
@@ -84,10 +86,26 @@ public class TalkController {
 		catch(Exception ex) {
 			System.out.println(ex.getMessage());
 			model.put("mensaje", "No se pudo eliminar la charla ");
-			model.put("listTalks", tlService.list());
+			model.put("listTalk", tlService.list());
 			
 		}
 		
+		return "redirect:/talks/list";
+	}
+	
+	
+	@RequestMapping("/buscar")
+	public String buscar(Map<String, Object> model, @ModelAttribute Talk talk ) throws ParseException {
+		List<Talk> listatalk;
+		talk.setRoomName(talk.getRoomName());
+		listatalk = tlService.BuscarNombre(talk.getRoomName());
+		
+		if (listatalk.isEmpty()) {
+			model.put("mensaje", "No se encontro");
+		}
+		model.put("listTalk", listatalk);				
 		return "/talk/Charlas";
 	}
+	
+
 }

@@ -90,7 +90,7 @@ public class EditorialController {
 			model.put("mensaje", "No se pudo eliminar la editorial");
 		}
 		model.put("listEditoriales", edService.list());
-		return "/editorial/Editoriales";
+		return "redirect:/editoriales/list";
 	}	
 	
 	

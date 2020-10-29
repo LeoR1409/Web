@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.support.SessionStatus;
 
 import pe.edu.upc.entity.Forum;
+import pe.edu.upc.entity.Talk;
 import pe.edu.upc.service.IForumService;
 @Controller
 @RequestMapping("/forums")
@@ -86,8 +87,8 @@ public class ForumController {
 			System.out.println(ex.getMessage());
 			model.put("mensaje", "No se pudo eliminar el foro");
 		}
-		model.put("listForums", foService.list());
-		return "/forum/Foros";
+		model.put("listForum", foService.list());
+		return "redirect:/forums/list";
 	}
 	
 	@RequestMapping("/ingresar/{column}")

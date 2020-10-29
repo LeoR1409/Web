@@ -1,6 +1,8 @@
 package pe.edu.upc.controller;
 
+import java.text.ParseException;
 import java.util.Map;
+import java.util.Optional;
 
 import javax.validation.Valid;
 
@@ -10,11 +12,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.support.SessionStatus;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
 
 import pe.edu.upc.entity.LevelExercise;
 import pe.edu.upc.service.ILevel_ExerciseService;
@@ -85,5 +90,35 @@ public class Level_ExerciseController {
 		model.put("listLevel_Exercise", leService.list());
 		return "/level_exercise/Niveles";
 	}
+	
+	
+	
+	
+	
+	@RequestMapping("/modificar/{id}")
+	public String modificar(@PathVariable int id, Model model, RedirectAttributes objRedir) 
+	throws ParseException
+	{
+		Optional<LevelExercise> objLevel = leService.listarId(id);
+		
+		if (objLevel == null) {
+			objRedir.addFlashAttribute("mensaje", "Ocurrio un rochesin");
+			return "redirect:/levels_exercise/list";
+		}
+		else {
+			model.addAttribute("levelExercise", objLevel);
+			return "/level_exercise/RegistroNiveles";
+		}
+	}
+	
+	@RequestMapping("/listarId")
+	public String listar(Map<String, Object> model, @ModelAttribute LevelExercise level) 
+	throws ParseException
+	{
+		leService.listarId(level.getIdLevel_Exercises());
+		return "Niveles";
+	}
+	
+	
 	
 }

@@ -86,12 +86,17 @@
                                             <h5 class="mb-3 editContent" style="outline: none; cursor: inherit; color: black; text-align: center; padding-bottom: 20px; font-size: 30px;">Registro de Editoriales<br></h5>
                                             <div class="form-style-w3ls">
                                                 
+                                                 <div class="editContent" style="outline: none; display:none; cursor: inherit;">
+                                                    <input placeholder="ID" style="border-radius: 40px;" type="text" th:field="*{idEditorial}" 
+                                                    th:errorclass="'form-control alert-danger'"  required/>
+        
+                                                                                      
+                                                </div>
+                                                
                                                 <div class="editContent" style="outline: none; cursor: inherit;">
                                                     <input placeholder="Nombre de Editorial" style="border-radius: 40px;" type="text" th:field="*{name_Editorial}" 
                                                     th:errorclass="'form-control alert-danger'"  required/>
-                                                    
-                                                    
-                                                                                      
+                                                       
                                                 </div>
                                                
                                                 

@@ -39,4 +39,11 @@ public class TalkServiceImpl implements ITalkService{
 	public List<Talk> list() {
 		return tlr.findAll();
 	}
+	
+	@Override
+	@Transactional
+	public List<Talk> BuscarNombre(String name) {
+		return tlr.buscarcharla(name);
+	}
+	
 }

@@ -9,4 +9,5 @@ public interface ITalkService {
 	public Integer insert(Talk tl);
     public void delete(int idTalk);
     List<Talk> list();
+    List<Talk> BuscarNombre(String name);
 }
