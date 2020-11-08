@@ -1,0 +1,1 @@
+INSERT INTO typeuser (typeuserName)    VALUES ('ROLE_ADMIN');
