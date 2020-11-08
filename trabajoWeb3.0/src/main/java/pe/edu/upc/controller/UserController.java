@@ -19,12 +19,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import pe.edu.upc.entity.TypeUser;
 import pe.edu.upc.entity.Users;
 import pe.edu.upc.service.ITypeUserService;
 import pe.edu.upc.service.IUserService;
 
 @Controller
-@RequestMapping("/users")
+@RequestMapping
 public class UserController {
 	
 	@Autowired
@@ -37,7 +38,7 @@ public class UserController {
 		model.addAttribute("users", new Users());
 
 		model.addAttribute("listtype", rS.list());
-		return "user/user";
+		return "RegistroLogin";
 	}
 
 	@PostMapping("/save")
@@ -47,7 +48,9 @@ public class UserController {
 			return "user/user";
 		} else {
 			String password = new BCryptPasswordEncoder().encode(users.getPassword());
-			users.setPassword(password);;
+			users.setPassword(password);
+			Optional<TypeUser> Rol = rS.Obtener(1);
+			users.setTypeuser(Rol.get());
 			int rpta = cS.insert(users);
 			if (rpta > 0) {
 				model.addAttribute("listtype", rS.list());

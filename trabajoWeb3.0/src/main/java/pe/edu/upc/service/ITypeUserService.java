@@ -8,4 +8,5 @@ public interface ITypeUserService {
 	public Integer insert(TypeUser tu);
     public void delete(int idTypeUser);
     List<TypeUser> list();
+    Optional<TypeUser> Obtener(int idTypeUser);
 }

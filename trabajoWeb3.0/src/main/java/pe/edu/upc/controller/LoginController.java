@@ -20,7 +20,7 @@ public class LoginController {
 			RedirectAttributes flash) {
 
 		if (principal != null) {
-			return "redirect:/";
+			return "redirect:/talks/list";
 		}
 
 		if (error != null) {

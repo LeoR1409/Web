@@ -1,6 +1,7 @@
 package pe.edu.upc.service.impl;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
@@ -37,6 +38,12 @@ public class TypeUserServiceImpl implements ITypeUserService{
 	@Transactional
 	public List<TypeUser> list() {
 		return tyusR.findAll();
+	}
+
+	@Override
+	public Optional<TypeUser> Obtener(int idTypeUser) {
+		// TODO Auto-generated method stub
+		return tyusR.findById(idTypeUser);
 	}
 
 }
