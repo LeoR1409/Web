@@ -26,21 +26,22 @@ public class Forum implements Serializable {
 	
 	@Column(name="Status", nullable=false, length=30)
 	private String Status;
+	
+	private int Vacancies;
 
 	public Forum() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public Forum(int idForums, String topic, int members, String status) {
+	public Forum(int idForums, String topic, int members, String status, int vacancies) {
 		super();
 		this.idForums = idForums;
 		Topic = topic;
 		Members = members;
 		Status = status;
+		Vacancies = vacancies;
 	}
-
-	
 
 	public int getIdForums() {
 		return idForums;
@@ -73,5 +74,15 @@ public class Forum implements Serializable {
 	public void setStatus(String status) {
 		Status = status;
 	}
+
+	public int getVacancies() {
+		return Vacancies;
+	}
+
+	public void setVacancies(int vacancies) {
+		Vacancies = vacancies;
+	}
+
+
 	
 }
