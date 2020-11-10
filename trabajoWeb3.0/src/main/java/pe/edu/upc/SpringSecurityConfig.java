@@ -8,9 +8,8 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
-
-
 import pe.edu.upc.service.impl.JpaUserDetailsService;
+import pe.edu.upc.spring.auth.handler.LoginSuccessHandler;
 
 @EnableGlobalMethodSecurity(securedEnabled = true)
 @Configuration
@@ -22,17 +21,28 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Autowired
 	private BCryptPasswordEncoder passwordEncoder;
 
+	@Autowired
+	private LoginSuccessHandler successHandler;
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 
-		http.authorizeRequests().antMatchers("/", "/css/**", "/vendor/**","/fonts/**", "/js/**", "/img/**", "/users", "/save", "/new", "/bundles/**","/css/**","/exercisecss/**", "login","/static/**","/registro","/registry/er/").permitAll().anyRequest()
-				.authenticated().and().formLogin()
-				.loginPage("/login")
-				.permitAll()
-				.defaultSuccessUrl("/talk/Charlas")
-				.and().logout().permitAll().and()
-				.exceptionHandling().accessDeniedPage("/error");
+		try {
+			http.authorizeRequests()
+			.antMatchers("/books/**").access("hasRole('ROLE_ADMIN') or hasRole('ROLE_USER')") 
+			.antMatchers("/editoriales/**").access("hasRole('ROLE_ADMIN')")
+			.antMatchers("/exercises/**").access("hasRole('ROLE_ADMIN') or hasRole('ROLE_USER')")
+			.antMatchers("/forums/**").access("hasRole('ROLE_ADMIN') or hasRole('ROLE_USER')")
+			.antMatchers("/levels_exercise/**").access("hasRole('ROLE_ADMIN')")
+			.antMatchers("/talks/**").access("hasRole('ROLE_ADMIN') or hasRole('ROLE_USER')")
+			.antMatchers("/types_exercise/**").access("hasRole('ROLE_ADMIN')")
+			.and()
+			.formLogin().successHandler(successHandler).loginPage("/login").loginProcessingUrl("/login").defaultSuccessUrl("/talks/list")
+			.permitAll().and().logout().logoutSuccessUrl("/login").permitAll().and().exceptionHandling().accessDeniedPage("/error");
+		
+		}catch(Exception e){
+			System.out.println(e.getMessage());
+		}
 	}
 
 	@Autowired

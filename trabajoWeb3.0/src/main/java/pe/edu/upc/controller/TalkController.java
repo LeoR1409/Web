@@ -108,7 +108,7 @@ public class TalkController {
 				}
 				else {
 					model.addAttribute("talk", objTalk);
-					return "/talk/RegistroCharlas";
+					return "/talk/RegistroCharlasMod";
 				}
 			}
 	
@@ -125,5 +125,28 @@ public class TalkController {
 		return "/talk/Charlas";
 	}
 	
+	@PostMapping("/mod")
+	public String saveMod(@Valid Talk talk, BindingResult result, Model model, SessionStatus status)
+	throws Exception {
+		
+		if (result.hasErrors()) {
+			return "/talk/talk";
+		}
+		else {
+			boolean rpta = tlService.modificar(talk);
+			if (rpta) {
+				model.addAttribute("mensaje", "Se modificó correctamente");
+				return "redirect:/talks/list";
+			}
+			else {
+				model.addAttribute("mensaje", "Ocurrió un problema");
+				status.setComplete();
+			}
+		}
+		
+		model.addAttribute("listTalk", tlService.list());
+		
+		return "redirect:/talks/list";
+	}
 
 }

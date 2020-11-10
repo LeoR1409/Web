@@ -106,7 +106,9 @@ public class ExerciseController {
 			return "redirect:/exercises/list";
 		}
 		else {
-			model.addAttribute("exercise", objExer);
+			model.addAttribute("exercise", objExer.get());
+			model.addAttribute("listLevel", leService.list());
+			model.addAttribute("listType", tyService.list());
 			return "/exercise/RegistroEjercicios";
 		}
 	}
