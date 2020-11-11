@@ -99,11 +99,12 @@ align-items: center;
 }
 .logo img{
     position: absolute;
-    right: 5%;
+    right: 7%;
     width: 40px;
     height: 40px;
     border: 2px solid orange;
     border-radius: 50%;
+    top: -10px;
 }
 .logo h2 {
     position: absolute;
