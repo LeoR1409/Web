@@ -8,7 +8,6 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import pe.edu.upc.entity.Book;
-import pe.edu.upc.entity.Talk;
 
 @Repository
 public interface BookRepository extends JpaRepository<Book, Integer>{

@@ -96,7 +96,8 @@
                                                 </div>
                                                 
                                                 <div class="editContent" style="outline: none; cursor: inherit;">
-                                                    <input placeholder="Nº Paginas" style="border-radius: 40px;" type="text" th:field="*{numberpages_Book}" 
+                                                    <input placeholder="Nº Paginas" style="border-radius: 40px;" type="text" th:field="*{numberpages_Book}"
+                                                    min="1" max="300" 
                                                     th:errorclass="'form-control alert-danger'"  required/>
                                                     
                                                     

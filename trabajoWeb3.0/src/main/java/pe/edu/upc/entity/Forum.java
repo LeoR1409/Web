@@ -1,11 +1,16 @@
 package pe.edu.upc.entity;
 import java.io.Serializable;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -28,10 +33,12 @@ public class Forum implements Serializable {
 	private String Status;
 	
 	private int Vacancies;
-
+	
+	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "idForums", nullable = true)
+    private List<DetailsForum> DetailsForum;
 	public Forum() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public Forum(int idForums, String topic, int members, String status, int vacancies) {
@@ -42,7 +49,9 @@ public class Forum implements Serializable {
 		Status = status;
 		Vacancies = vacancies;
 	}
-
+	public void addDetailImportation(DetailsForum item) {
+        this.DetailsForum.add(item);
+    }
 	public int getIdForums() {
 		return idForums;
 	}
@@ -81,6 +90,14 @@ public class Forum implements Serializable {
 
 	public void setVacancies(int vacancies) {
 		Vacancies = vacancies;
+	}
+
+	public List<DetailsForum> getDetailsForum() {
+		return DetailsForum;
+	}
+
+	public void setDetailsForum(List<DetailsForum> detailsForum) {
+		DetailsForum = detailsForum;
 	}
 
 

@@ -3,7 +3,6 @@ package pe.edu.upc.service;
 import java.util.List;
 
 import pe.edu.upc.entity.Book;
-import pe.edu.upc.entity.Talk;
 
 public interface IBook_Service {
 	public Integer insert(Book b);

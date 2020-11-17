@@ -3,6 +3,7 @@ package pe.edu.upc.controller;
 
 import java.security.Principal;
 
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,6 +21,8 @@ public class LoginController {
 			RedirectAttributes flash) {
 
 		if (principal != null) {
+			UserDetails user = (UserDetails) principal;
+			String usersname = user.getUsername();
 			return "redirect:/talks/list";
 		}
 

@@ -1,6 +1,5 @@
 package pe.edu.upc.controller;
 import java.text.ParseException;
-import java.util.Map;
 import java.util.Optional;
 
 import javax.validation.Valid;
@@ -15,7 +14,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -64,5 +62,43 @@ public class UserController {
 				return "login";
 			}
 		}
+	}
+	@RequestMapping("/modificar/{id}")
+	public String modificar(@PathVariable int id, Model model, RedirectAttributes objRedir) 
+			throws ParseException
+			{
+				Optional<Users> objUsers = cS.listarId(id);
+				
+				if (objUsers == null) {
+					objRedir.addFlashAttribute("mensaje", "Ocurrio un rochesin");
+					return "redirect:/users/list";
+				}
+				else {
+					model.addAttribute("users", objUsers.get());
+					return "RegistroLoginMod";
+				}
+			}
+	@PostMapping("/mod")
+	public String saveMod(@Valid Users users, BindingResult result, Model model, SessionStatus status)
+	throws Exception {
+		
+		if (result.hasErrors()) {
+			return "/users/users";
+		}
+		else {
+			boolean rpta = cS.modificar(users);
+			if (rpta) {
+				model.addAttribute("mensaje", "Se modificó correctamente");
+				return "redirect:/users/list";
+			}
+			else {
+				model.addAttribute("mensaje", "Ocurrió un problema");
+				status.setComplete();
+			}
+		}
+		
+		model.addAttribute("listUsers", cS.list());
+		
+		return "redirect:/users/list";
 	}
 }

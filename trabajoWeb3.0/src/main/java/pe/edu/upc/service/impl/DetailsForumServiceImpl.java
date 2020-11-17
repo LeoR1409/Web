@@ -1,5 +1,4 @@
 package pe.edu.upc.service.impl;
-
 import java.util.List;
 import java.util.Optional;
 
@@ -7,32 +6,33 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import pe.edu.upc.entity.Exercise;
-import pe.edu.upc.repository.ExerciseRepository;
-import pe.edu.upc.service.IExercise_Service;
+import pe.edu.upc.entity.DetailsForum;
+import pe.edu.upc.repository.DetailsForumRepository;
+import pe.edu.upc.service.IDetailsForumService;
 
 @Service
-public class ExerciseServiceImpl implements IExercise_Service{
+public class DetailsForumServiceImpl implements IDetailsForumService{
 
+	
 	@Autowired
-	private ExerciseRepository edR;
+	private DetailsForumRepository dfR;
 	
 	@Override
 	@Transactional
-	public Integer insert(Exercise e) {
+	public Integer insert(DetailsForum df) {
 		int rpta=0;
 		if(rpta == 0) {
-			edR.save(e);
+			dfR.save(df);
 		}
 		return rpta;
 	}
-	
+
 	@Override
-	@Transactional	
-	public boolean modificar(Exercise e) {
+	@Transactional
+	public boolean modificar(DetailsForum detailsforum) {
 		boolean flag = false;
 		try {
-			edR.save(e);
+			dfR.save(detailsforum);
 			flag = true;
 		}
 		catch (Exception ex){
@@ -40,22 +40,23 @@ public class ExerciseServiceImpl implements IExercise_Service{
 		}
 		return flag;
 	}
-	
+
 	@Override
 	@Transactional(readOnly = true)
-	public Optional<Exercise> listarId(int idExercise){
-		return edR.findById(idExercise);
+	public Optional<DetailsForum> listarId(int idDetails) {
+		return dfR.findById(idDetails);
 	}
 
 	@Override
 	@Transactional
-	public void delete(int idExercise) {
-		edR.deleteById(idExercise);
+	public void delete(int idDetails) {
+		dfR.deleteById(idDetails);
 	}
 
 	@Override
 	@Transactional
-	public List<Exercise> list() {
-		return edR.findAll();
+	public List<DetailsForum> list() {
+		return dfR.findAll();
 	}
+
 }
