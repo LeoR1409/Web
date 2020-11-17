@@ -96,7 +96,7 @@
                                                 </div>
                                                 
                                                 <div class="editContent" style="outline: none; cursor: inherit;">
-                                                    <input placeholder="Miembros" style="border-radius: 40px;" type="text" th:field="*{members}"
+                                                    <input placeholder="Miembros" style="border-radius: 40px;" type="number" th:field="*{members}"
                                                     min="1" max="80" 
                                                     th:errorclass="'form-control alert-danger'"  required/>
                                                     
@@ -105,7 +105,7 @@
                                                 </div>
                                                 
                                                  <div class="editContent" style="outline: none; cursor: inherit;">
-                                                    <input placeholder="Vacantes" style="border-radius: 40px;" type="text" th:field="*{vacancies}"
+                                                    <input placeholder="Vacantes" style="border-radius: 40px;" type="number" th:field="*{vacancies}"
                                                     min="0" max="80" 
                                                     th:errorclass="'form-control alert-danger'"  required/>
                                                     
