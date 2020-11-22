@@ -12,9 +12,10 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="detailsforum")
-
 public class DetailsForum implements Serializable{
 	private static final long serialVersionUID = 1L;
+	
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idDetails;
@@ -23,7 +24,7 @@ public class DetailsForum implements Serializable{
     @JoinColumn(name = "idForums")
     private Forum forum;
 	
-	@Column(name="question", nullable=false, length=60)
+	@Column(name="question", nullable=false, length=200)
 	private String question;
 
 	public int getIdDetails() {
@@ -49,5 +50,6 @@ public class DetailsForum implements Serializable{
 	public void setQuestion(String question) {
 		this.question = question;
 	}
+
 	
 }

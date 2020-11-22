@@ -9,4 +9,6 @@ public interface IUserService {
 	public Optional<Users> listarId(int idUser);
     public void delete(int idUser);
     List<Users> list();
+    
+    public Users getAccount(String username);
 }

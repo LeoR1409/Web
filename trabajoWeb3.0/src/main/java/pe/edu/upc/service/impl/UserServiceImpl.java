@@ -60,4 +60,10 @@ public class UserServiceImpl implements IUserService{
 		return usR.findById(idUser);
 	}
 
+	@Override
+	public Users getAccount(String username) {
+		
+		return usR.findByUserAccount(username);
+	}
+
 }

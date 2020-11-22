@@ -12,4 +12,5 @@ public interface IDetailsForumService {
     public void delete(int idDetails);
     List<DetailsForum> list();
     public DetailsForum BuscarDetalledeForo(String question);
+    public Optional<DetailsForum> listarIdxIdForo(int idForo);
 }

@@ -18,16 +18,15 @@ public class Comments implements Serializable{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idComments;
 	
-	@Column(name="Text", nullable=false, length=60)
-	private String Text;
-	
+	@Column(name="text", nullable=false, length=60)
+	private String text;
 	@ManyToOne
     @JoinColumn(name = "idUser")
     private Users users;
 
 	@ManyToOne
     @JoinColumn(name = "idDetails")
-    private DetailsForum details;
+    private DetailsForum detailsForum;
 	
 	public int getIdComments() {
 		return idComments;
@@ -38,11 +37,11 @@ public class Comments implements Serializable{
 	}
 
 	public String getText() {
-		return Text;
+		return text;
 	}
 
 	public void setText(String text) {
-		Text = text;
+		this.text = text;
 	}
 
 	public Users getUsers() {
@@ -53,12 +52,11 @@ public class Comments implements Serializable{
 		this.users = users;
 	}
 
-	public DetailsForum getDetails() {
-		return details;
+	public DetailsForum getDetailsForum() {
+		return detailsForum;
 	}
 
-	public void setDetails(DetailsForum details) {
-		this.details = details;
+	public void setDetailsForum(DetailsForum detailsForum) {
+		this.detailsForum = detailsForum;
 	}
-	
 }

@@ -82,25 +82,18 @@
                                     <div class="padding editContent" style="outline: none; outline-offset: -2px; cursor: inherit; border-radius: 40px;">
 
                                         <!-- banner form -->
-                                        <form th:action="@{/forums/save}" method="post" th:object="${forum}">
+                                        <form th:action="@{'/forums/savedetails/'+${idforum}}" method="post" th:object="${detailsForum}">
                                             <h5 class="mb-3 editContent" style="outline: none; cursor: inherit; color: black; text-align: center; padding-bottom: 20px; font-size: 30px;">Registro de Pregunta<br></h5>
                                             <div class="form-style-w3ls">
 
-                                                <div class="editContent" >
-                                                    <select class="form-control" th:field="*{levelexercise.idLevel_Exercises}" style="border-radius: 100px ;">
-                                                     <option   th:each="c: ${listLevel}" th:value="${c.idLevel_Exercises}" th:text="${c.levelsName}"
-                                                         th:selected="(${c.idLevel_Exercises} == *{levelexercise.idLevel_Exercises})"></option>
-                                                     </select>
-                                                </div>
-                                                
-                                                
-                                                
+                                                                                          
+                                                                                              
                                                 <div class="editContent" style="outline: none; cursor: inherit;">
-                                                    <input placeholder="Pregunta" style="border-radius: 40px; height: 50px; width: 300px;" type="text" th:field="*{members}" 
+                                                    <input placeholder="Pregunta" style="border-radius: 40px; height: 50px; width: 300px;" type="text" th:field="*{question}" 
                                                     th:errorclass="'form-control alert-danger'"  required/>
                                                     
-                                                    <small class="form-text text-danger" th:if="${#fields.hasErrors('members')}"
-                                                    th:errors="*{members}"></small>
+                                                    <small class="form-text text-danger" th:if="${#fields.hasErrors('question')}"
+                                                    th:errors="*{question}"></small>
                                                                                       
                                                 </div>
                                                 

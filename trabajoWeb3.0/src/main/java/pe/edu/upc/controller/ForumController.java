@@ -7,7 +7,9 @@ import java.util.Optional;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
-
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -18,11 +20,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import pe.edu.upc.entity.Comments;
 import pe.edu.upc.entity.DetailsForum;
 import pe.edu.upc.entity.Forum;
+import pe.edu.upc.entity.Users;
 import pe.edu.upc.service.ICommentsService;
 import pe.edu.upc.service.IDetailsForumService;
 import pe.edu.upc.service.IForumService;
+import pe.edu.upc.service.IUserService;
 @Controller
 @RequestMapping("/forums")
 
@@ -31,10 +36,19 @@ public class ForumController {
 
 	@Autowired
 	private IForumService foService;
-	private ICommentsService commenService;
+	
+	@Autowired
 	private IDetailsForumService defoService;
+	
+	@Autowired
+	private ICommentsService commenService;
+	
+	@Autowired
+	private IUserService userService;
+	
+	private Forum f ;
 
-	DetailsForum detailsforum;
+	private Users cuenta;
 	
 	@GetMapping("/new")
 	public String newForum(Model model) {
@@ -97,13 +111,27 @@ public class ForumController {
 	@RequestMapping("/ingresar/{column}/{id}")
 	public String ingresar(Map<String, Object> model, @PathVariable(value="column") String column,@PathVariable(value="id") int id) {
 		try {
-			model.put("listComments", commenService.list());
+			Optional<Forum> fo = foService.listarId(id);
+			Optional<DetailsForum> forD = defoService.listarIdxIdForo(id);
+			if (forD.isPresent()) {
+					model.put("detailsForum",forD.get());
+					model.put("listComments", commenService.list());
+					
+			}
+			else {
+				model.put("detailsForum",new DetailsForum());
+				model.put("listComments", commenService.list());
+				
+			}
+			model.put("comments", new Comments());
 		}
 		catch(Exception ex) {
 			System.out.println(ex.getMessage());
 			model.put("mensaje", "No se pudo eliminar el foro");
 		}
 		String cadena="/forum/"+column;
+		model.put("idforum", id);
+		
 		return cadena;
 	}
 	@RequestMapping("/modificar/{id}")
@@ -123,8 +151,71 @@ public class ForumController {
 			}
 	@GetMapping("/newdetails/{id}")
 	public String newDetailsForum(Model model,@PathVariable(value="id") int id) {
-		Optional<Forum> fo = foService.listarId(id);
-		model.addAttribute("detailsforum", new DetailsForum());
+		Optional<DetailsForum> forD = defoService.listarIdxIdForo(id);
+		if (forD.isPresent()) {
+			model.addAttribute("detailsForum",forD.get());
+			model.addAttribute("idforum", id);
+		}
+		else
+		{	model.addAttribute("detailsForum", new DetailsForum());
+			model.addAttribute("idforum", id);
+			}
+		
 		return "/forum/ModificarForo";
+	}
+	
+	@RequestMapping("/savedetails/{id}")
+	public String saveDetails(@Valid DetailsForum detailsForum, BindingResult result, Model model, SessionStatus status, @PathVariable(value="id") int id)
+	throws Exception {
+		
+		if (result.hasErrors()) {
+			return "/forum/ModificarForo";
+		}
+		else {
+			Optional<Forum> fo = foService.listarId(id);
+			f= fo.get();
+			detailsForum.setForum(f);
+			int rpta = defoService.insert(detailsForum);
+			if (rpta > 0) {
+				
+				return "/forum/ModificarForo";
+			}
+			else {
+				status.setComplete();
+				String cadena="redirect:/forums/ingresar/" + f.getTopic()+"/"+f.getIdForums();
+				return cadena;
+			}
+		}
+		
+		
+	}
+	@RequestMapping("/savecomment/{id}")
+	public String saveComment(@Valid Comments comments, BindingResult result, Model model, SessionStatus status, @PathVariable(value="id") int id)
+	throws Exception {
+		
+		if (result.hasErrors()) {
+			return "/forum/ModificarForo";
+		}
+		else {
+			Authentication auth = SecurityContextHolder
+		            .getContext()
+		            .getAuthentication();
+		    UserDetails  userDetail = (UserDetails) auth.getPrincipal(); // para obtener el usuario logueado
+		    cuenta = this.userService.getAccount(userDetail.getUsername());
+			Optional<DetailsForum> forD = defoService.listarIdxIdForo(id);
+			comments.setDetailsForum(forD.get());
+			comments.setUsers(cuenta);
+			int rpta = commenService.insert(comments);
+			if (rpta > 0) {
+				return "/forum/ModificarForo";
+			}
+			else {
+				status.setComplete();
+				String cadena="redirect:/forums/ingresar/" + f.getTopic()+"/"+f.getIdForums();
+				return cadena;
+			}
+		}
+		
+		
 	}
 }

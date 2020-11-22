@@ -11,4 +11,5 @@ import pe.edu.upc.entity.Users;
 public interface UserRepository extends JpaRepository<Users, Integer>{
 	@Query("from Users a where upper(a.username)=upper(:parametro)")
     public Users findByUserAccount(@Param("parametro")String users);
+	
 }

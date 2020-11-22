@@ -66,4 +66,10 @@ public class DetailsForumServiceImpl implements IDetailsForumService{
 		return dfR.BuscarPregunta(question);
 	}
 
+	@Override
+	public Optional<DetailsForum> listarIdxIdForo(int idForo) {
+		
+		return dfR.BuscardetallexidForo(idForo);
+	}
+
 }
