@@ -34,9 +34,7 @@ public class Forum implements Serializable {
 	
 	private int Vacancies;
 	
-	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "idForums", nullable = true)
-    private List<DetailsForum> DetailsForum;
+
 	public Forum() {
 		super();
 	}
@@ -49,9 +47,6 @@ public class Forum implements Serializable {
 		Status = status;
 		Vacancies = vacancies;
 	}
-	public void addDetailImportation(DetailsForum item) {
-        this.DetailsForum.add(item);
-    }
 	public int getIdForums() {
 		return idForums;
 	}
@@ -92,13 +87,6 @@ public class Forum implements Serializable {
 		Vacancies = vacancies;
 	}
 
-	public List<DetailsForum> getDetailsForum() {
-		return DetailsForum;
-	}
-
-	public void setDetailsForum(List<DetailsForum> detailsForum) {
-		DetailsForum = detailsForum;
-	}
 
 
 	

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en" xmlns:th="http://www.thymeleaf.org/" >
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -45,7 +45,7 @@
             
             <ul>
                 
-                  <li><a th:href="@{/}">Inicio</a></li>
+                 <li><a th:href="@{/}">Inicio</a></li>
                 <li><a th:href="@{/talks/list}">Charlas</a></li>
                 <li><a th:href="@{/forums/list}">Foros</a></li>
                 <li><a th:href="@{/exercises/list}">Ejercicios</a></li> 
@@ -64,23 +64,12 @@
       </section>
       <section id="main-content">
         <div class="text-intro">
-          <h2>¿Present simple es dificil?</h2>
+          <h2 th:text = "${detailsforum}"></h2><a><i class = "fa fa-pencil"></i></a>
         </div>
         <div class="columns features">
-          <div class="one-third first">
-            <h3>Jorge</h3>
-            <p>Siempre veo jorge el curioso y no atiendi a esa clase en el brita  :V</p>
-           
-          </div>
-          <div class="one-third">
-            <h3>Jeff</h3>
-            <p>Maso uu</p>
-            
-          </div>
-          <div class="one-third">
-            <h3>Leo</h3>
-            <p>quedaras numero 76 uu</p>
-           
+          <div class="one-third first"  th:each= "c:${listComments}" >
+            <h3 th:text = "${c.users.username}">Jorge</h3>
+            <p th:text = "${c.text}">Siempre veo jorge el curioso y no atiendi a esa clase en el brita  :V</p>       
           </div>
         </div>
       </section>

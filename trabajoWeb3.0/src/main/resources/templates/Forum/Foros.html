@@ -86,7 +86,7 @@
                                             <td class="" style="text-align: center;" th:text="${c.members}"></td>
                                             <td class="" style="text-align: center;" th:text="${c.vacancies}"></td>
                                             <td class="" style="text-align: center;" th:text="${c.status}"></td>
-                                            <td class="" style="text-align: center;" ><a target="_blank" th:href="@{'/forums/ingresar/'+${c.Topic}}">Ingresar</a>  </td>
+                                            <td class="" style="text-align: center;" ><a target="_blank" th:href="@{'/forums/ingresar/'+${c.Topic}+'/'+${c.idForums}}">Ingresar</a>  </td>
                                             <td style="text-align: center;"> <a th:href="@{'/forums/delete/'+${c.idForums}}"><i
                                         class="iconf fa fa-trash" style="color: red"></i></a> </td>
                                  </tr>                                                                                                                                                         

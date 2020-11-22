@@ -25,6 +25,10 @@ public class Comments implements Serializable{
     @JoinColumn(name = "idUser")
     private Users users;
 
+	@ManyToOne
+    @JoinColumn(name = "idDetails")
+    private DetailsForum details;
+	
 	public int getIdComments() {
 		return idComments;
 	}
@@ -49,5 +53,12 @@ public class Comments implements Serializable{
 		this.users = users;
 	}
 
+	public DetailsForum getDetails() {
+		return details;
+	}
+
+	public void setDetails(DetailsForum details) {
+		this.details = details;
+	}
 	
 }

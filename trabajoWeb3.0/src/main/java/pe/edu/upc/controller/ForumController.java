@@ -1,5 +1,6 @@
 package pe.edu.upc.controller;
 
+import java.text.ParseException;
 import java.util.Map;
 import java.util.Optional;
 
@@ -17,7 +18,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import pe.edu.upc.entity.Comments;
 import pe.edu.upc.entity.DetailsForum;
 import pe.edu.upc.entity.Forum;
 import pe.edu.upc.service.ICommentsService;
@@ -33,7 +33,8 @@ public class ForumController {
 	private IForumService foService;
 	private ICommentsService commenService;
 	private IDetailsForumService defoService;
-	
+
+	DetailsForum detailsforum;
 	
 	@GetMapping("/new")
 	public String newForum(Model model) {
@@ -93,45 +94,37 @@ public class ForumController {
 		return "redirect:/forums/list";
 	}
 	
-	@RequestMapping("/ingresar/{column}")
-	public String ingresar(Map<String, Object> model, @PathVariable(value="column") String column) {
+	@RequestMapping("/ingresar/{column}/{id}")
+	public String ingresar(Map<String, Object> model, @PathVariable(value="column") String column,@PathVariable(value="id") int id) {
 		try {
-			//Optional<Forum> fo = foService.listarId(id);
-			//model.put("forum", fo.get());
-			//model.put("listComments", commenService.list());
-			//model.put("comments", new Comments());
-			//model.put("detailsforum", new DetailsForum());
-			String cadena="/forum/"+column;
-			return cadena;
+			model.put("listComments", commenService.list());
 		}
 		catch(Exception ex) {
 			System.out.println(ex.getMessage());
+			model.put("mensaje", "No se pudo eliminar el foro");
 		}
-		model.put("listForums", foService.list());
-		return "/forum/Foros";
+		String cadena="/forum/"+column;
+		return cadena;
 	}
-	@RequestMapping("/savecomments{id}")
-    public String newProductXImportation(@PathVariable(value = "id") int id, @Valid DetailsForum detailsforum,
-            RedirectAttributes flash, BindingResult result, Model model, SessionStatus status) {
+	@RequestMapping("/modificar/{id}")
+	public String modificar(@PathVariable int id, Model model, RedirectAttributes objRedir) 
+			throws ParseException
+			{
+				Optional<DetailsForum> objDetailsForum = defoService.listarId(id);
+				
+				if (objDetailsForum == null) {
+					objRedir.addFlashAttribute("mensaje", "Ocurrio un rochesin");
+					return "redirect:/detailsforum/list";
+				}
+				else {
+					model.addAttribute("detailsforum", objDetailsForum);
+					return "/detailsforum/ModificarForo";
+				}
+			}
+	@GetMapping("/newdetails/{id}")
+	public String newDetailsForum(Model model,@PathVariable(value="id") int id) {
 		Optional<Forum> fo = foService.listarId(id);
-        if (result.hasErrors()) {
-            flash.addFlashAttribute("error", "El valor debe ser positivo");
-            String cadena1 = "redirect:/loan/newexemplary/" + id;
-            return cadena1;
-        }
-        try {
-            Forum foru = new Forum();
-            foru = fo.get();
-            foru.setIdForums(id);
-            detailsforum.setForum(foru);
-            fo.get().addDetailImportation(detailsforum);
-            foService.insert(fo.get());
-            status.isComplete();
-        } catch (Exception e) {
-            model.addAttribute("error", e.getMessage());
-            System.out.println(e.getMessage());
-        }
-        String cadena = "redirect:/forums/ingresar/" + fo.get().getTopic()+ "/" + id;
-        return cadena;
-    }
+		model.addAttribute("detailsforum", new DetailsForum());
+		return "/forum/ModificarForo";
+	}
 }

@@ -59,4 +59,11 @@ public class DetailsForumServiceImpl implements IDetailsForumService{
 		return dfR.findAll();
 	}
 
+	@Override
+	@Transactional
+	public DetailsForum BuscarDetalledeForo(String question) {
+		
+		return dfR.BuscarPregunta(question);
+	}
+
 }
