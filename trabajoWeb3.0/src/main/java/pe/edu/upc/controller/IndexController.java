@@ -15,10 +15,23 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.support.SessionStatus;
 
+
 @Controller
+@RequestMapping
 public class IndexController {
-@GetMapping("/")
-public String home() {
-    return "index";
+	@GetMapping("/")
+	public String home() {
+	    return "Landing";
+	}
+
+
+	@GetMapping("/iniciar")
+	public String login() {
+	    return "login";
+	}
+	
+
+	
+	
 }
-}
+
