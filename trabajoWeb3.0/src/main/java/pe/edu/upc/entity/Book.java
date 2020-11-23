@@ -31,6 +31,23 @@ public class Book implements Serializable {
 	@ManyToOne
     @JoinColumn(name = "idEditorial")
     private Editorial editorial;
+	
+	@Column(name="enlace", nullable=false, length=100)
+	private String enlace;
+
+	public Book() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public Book(int idBook, String name_Book, String numberpages_Book, Editorial editorial, String enlace) {
+		super();
+		this.idBook = idBook;
+		this.name_Book = name_Book;
+		this.numberpages_Book = numberpages_Book;
+		this.editorial = editorial;
+		this.enlace = enlace;
+	}
 
 	public int getIdBook() {
 		return idBook;
@@ -63,6 +80,16 @@ public class Book implements Serializable {
 	public void setEditorial(Editorial editorial) {
 		this.editorial = editorial;
 	}
+
+	public String getEnlace() {
+		return enlace;
+	}
+
+	public void setEnlace(String enlace) {
+		this.enlace = enlace;
+	}
+
+	
 	
 	
 	
