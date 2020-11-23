@@ -38,7 +38,8 @@
                     <li><i class="far fa-bell"></i></li>
                 </ul>
                 <h2>Ez English</h2>
-                <img src="img/logo.png" alt=" ... ">
+                 <form th:action="@{/logout}" method="post"> <button><img src="/img/logout.png" alt=" ... "></button>
+                </form>
             </div>
         </div>
         <div class="body">
@@ -66,24 +67,26 @@
         <div class="text-intro">
           <h2 th:text = "${detailsForum.question}"></h2><a th:href="@{'/forums/newdetails/'+${idforum}}" ><i class = "fa fa-pencil"></i></a>
         </div>
-        <div class="columns features">
+        <div class="columns features" style="display: flex; justify-content: space-between;">
           <div class="one-third first"  th:each= "c:${listComments}" >
             <h3 th:text = "${c.users.username}">Jorge</h3>
             <p th:text = "${c.text}"></p>       
           </div>
         </div>
         <div class="banner-form-w3 " style="margin-bottom: 10px; margin-top: 10px;">
+	
 	<div class="padding editContent" style="outline: none; outline-offset: -2px; cursor: inherit; border-radius: 40px;">
       <form th:action="@{'/forums/savecomment/'+${detailsForum.idDetails}}" method="post" th:object="${comments}">
-					<div class="form-style-w3ls">                                             
-					<div class="editContent" style="outline: none; cursor: inherit;">
-					<input placeholder="Escribe aqui" style="border-radius: 40px; height: 50px; width: 300px;" type="text" th:field="*{text}" 
+      
+					<div class="form-style-w3ls" style="transform: translateY(80%);">                                             
+					<div class="editContent" style="outline: none; cursor: inherit; ">
+					<input placeholder="Escribe aqui" style="border-radius: 40px; height: 50px; width: 300px; " type="text" th:field="*{text}" 
 					th:errorclass="'form-control alert-danger'"  required/>
 					<small class="form-text text-danger" th:if="${#fields.hasErrors('text')}"
 					th:errors="*{text}"></small>                                      
 					</div>
 					<br>
-					<button class="btn" style="outline: none; outline-offset: -2px; cursor: inherit;border-radius: 40px;">Comentar</button>		
+					<button class="btn" style="outline: none; outline-offset: -2px; cursor: inherit;border-radius: 40px; ">Comentar</button>		
                     </div>
 	</form>
 	</div>
