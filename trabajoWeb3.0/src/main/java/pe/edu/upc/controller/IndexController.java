@@ -21,7 +21,12 @@ import org.springframework.web.bind.support.SessionStatus;
 public class IndexController {
 	@GetMapping("/")
 	public String home() {
-	    return "Landing";
+		return "Landing";
+	}
+	
+	@GetMapping("/inicio")
+	public String landing() {
+	    return "Index";
 	}
 
 
@@ -29,6 +34,12 @@ public class IndexController {
 	public String login() {
 	    return "login";
 	}
+	
+	@GetMapping("/contacto")
+	public String contacto() {
+	    return "Contacto";
+	}
+	
 	
 
 	
