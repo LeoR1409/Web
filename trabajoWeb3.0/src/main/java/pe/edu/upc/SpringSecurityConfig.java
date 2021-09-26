@@ -29,6 +29,7 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 
 		try {
 			http.authorizeRequests()
+			.antMatchers("/**").access("hasRole('ROLE_ADMIN') or hasRole('ROLE_USER')") 
 			.antMatchers("/books/**").access("hasRole('ROLE_ADMIN') or hasRole('ROLE_USER')") 
 			.antMatchers("/editoriales/**").access("hasRole('ROLE_ADMIN')")
 			.antMatchers("/exercises/**").access("hasRole('ROLE_ADMIN') or hasRole('ROLE_USER')")
@@ -36,6 +37,7 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 			.antMatchers("/levels_exercise/**").access("hasRole('ROLE_ADMIN')")
 			.antMatchers("/talks/**").access("hasRole('ROLE_ADMIN') or hasRole('ROLE_USER')")
 			.antMatchers("/types_exercise/**").access("hasRole('ROLE_ADMIN')")
+			.antMatchers("/", "/css/**", "/bundles/**", "/exercisecss/**", "/fonts/**", "/img/**", "/js/**", "/icono.ico", "/favicon.ico").authenticated()
 			.and()
 			.formLogin().successHandler(successHandler).loginPage("/login").loginProcessingUrl("/login").defaultSuccessUrl("/talks/list")
 			.permitAll().and().logout().logoutSuccessUrl("/login").permitAll().and().exceptionHandling().accessDeniedPage("/error");
